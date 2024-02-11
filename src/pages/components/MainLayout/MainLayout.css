@@ -1,8 +1,63 @@
-
-.site-layout-background{
-  background:  #f0f5ff;
-}
 .ant-layout{
+  height: 100vh;
+}
+
+.trigger {
+  padding: 0 24px;
+  font-size: 18px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.ant-layout-sider-children{
+  padding-top: 30px;
   display: flex;
-  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.logo {
+  padding: 16px 0;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ transition: all  0.5s ease-in-out;
+}
+.ant-layout-sider-collapsed .clever{
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.logo:first-child{
+  margin-top: 5px;
+}
+.ant-layout-sider{
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+  
+}
+
+.side_footer-container{
+  padding: 11px 16px;
+ }
+ .side_footer{
+  box-shadow: inset 0px 1px 0px 0px rgb(240, 240, 240);
+ }
+ .side_footer-container a{
+   display: flex;
+   align-items: center;
+   gap: 45px;
+   color: #262626;
+   font-size: 14px;
+   font-weight: 400;
+   line-height: 130%;
+   text-align: center;
+ }
+
+ .ant-layout.site-layout{
+  background-image: url('./../../../assets/bg-mainPage.png');
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
 }

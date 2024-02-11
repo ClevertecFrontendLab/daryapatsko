@@ -26,16 +26,15 @@ const items =[
 ]
   
 
-const MenuSide = () => {
+const MenuSide = ({collapsed} : {collapsed:boolean}) => {
   return (
     <ul className="menu_list">
       {items.map((el) => (
         <li key={el.key} className="menu_list-item">
           {el.icon}
-          <span className="item-label">{el.label}</span>
+          <span className={`item-label ${!collapsed ? 'visible' : ''}`}>{el.label}</span>
         </li>
       ))}
-
     </ul>
   )
 }

@@ -1,0 +1,40 @@
+.site-layout-background{
+    background: #f0f5ff;
+    padding: 16px 24px;
+    max-height: 168px;
+}
+.ant-layout-header{
+    height: auto;
+    line-height: 0;
+}
+.site-layout-background a{
+    color: #262626;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 130%;
+    text-align: left;
+}
+.content__header{
+    padding-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.content_header-title{
+    color: rgb(38, 38, 38);
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 130%;
+    text-align: left;
+}
+p{
+    margin: 0;
+}
+.setting_box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.setting_box p{
+    padding-left: 10px;
+}

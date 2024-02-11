@@ -1,19 +1,26 @@
 .menu_list{
     list-style: none;
-    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     margin: 0;
+    padding: 0 16px;
 }
 .menu_list-item{
     padding: 12px 0;
 }
-.item-label{
+.item-label.visible{
+    visibility: visible;
     padding-left: 10px;
-    font-family: var(--font-family);
     font-weight: 400;
     font-size: 14px;
     line-height: 130%;
-    color: var(--character-light-title-85);
+    color: #262626;
+    transition: all 1s ease-in-out;
+    opacity: 1;
 }
-/* .menu_list-item span svg path{
-    fill: #2F54EB;
-} */
+.item-label{
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s;
+}

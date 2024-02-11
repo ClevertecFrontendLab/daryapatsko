@@ -1,0 +1,8 @@
+
+.site-layout-background{
+  background:  #f0f5ff;
+}
+.ant-layout{
+  display: flex;
+  height: 100%;
+}

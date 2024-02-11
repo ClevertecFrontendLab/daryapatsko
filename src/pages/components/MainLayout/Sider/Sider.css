@@ -1,0 +1,32 @@
+.side_container{
+    flex: 0 0 208px;
+    max-width: 208px;
+    min-width: 208px;
+    width: 208px;
+    padding-top: 30px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .side-main_content{
+    display: flex;
+    flex-direction: column;
+  }
+  .logo-container{
+    padding: 14px 0;
+    margin-bottom: 50px;
+    align-self: center;
+  }
+  .side_footer-container{
+   padding: 11px 16px;
+  }
+  .side_footer{
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+  }
+  .side_footer-container a{
+    display: flex;
+    align-items: center;
+    gap: 45px;
+  }
+ 

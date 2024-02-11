@@ -13,10 +13,6 @@ const HeaderMain = () => {
               <p>Настройки</p>
             </div>
           </div>
-          {/* {React.createElement(collapsed ?  : , {
-            className: 'trigger',
-            onClick: () => setCollapsed(!collapsed),
-          })} */}
     </Header>
   )
 }

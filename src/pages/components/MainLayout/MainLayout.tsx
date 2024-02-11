@@ -1,19 +1,8 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import './MainLayout.css';
-import {
-    CalendarTwoTone,
-    HeartTwoTone,
-    IdcardTwoTone,
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
-    TrophyTwoTone,
-    UploadOutlined,
-    UserOutlined,
-    VideoCameraOutlined,
-} from '@ant-design/icons';
-import { Layout, Menu } from 'antd';
-const { Header, Sider, Content } = Layout;
+import { Layout } from 'antd';
+const { Sider, Content } = Layout;
 import clever from './../../../assets/Clever.svg';
 import fit from './../../../assets/fit.svg';
 import exitIcon from './../../../assets/exitIcon.svg';
@@ -21,6 +10,7 @@ import HeaderMain from './../Header/HeaderMain';
 
 import './MainLayout.css';
 import MenuSide from './Menu/MenuSide';
+import ContentMain from '../Content/ContentMain';
 
 export const MainLayout: React.FC = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -51,19 +41,7 @@ export const MainLayout: React.FC = () => {
             </Sider>
             <Layout className='site-layout'>
                 <HeaderMain/>
-                <Content
-                    className='site-layout-background'
-                    style={{
-                        margin: '24px 16px',
-                        padding: 24,
-                        minHeight: 280,
-                    }}
-                >
-                   {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                        className: 'trigger',
-                        onClick: () => setCollapsed(!collapsed),
-                    })}
-                </Content>
+              <ContentMain collapsed={collapsed} setCollapsed={setCollapsed}/>
             </Layout>
         </Layout>
     );

@@ -58,6 +58,9 @@
 }
 
 @media screen and (max-width:362px){
+  .ant-layout.site-layout{
+    min-height: 100%;
+  }
   .ant-layout-sider-children{
     padding-top: 0;
   }

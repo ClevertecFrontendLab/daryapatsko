@@ -35,7 +35,6 @@
     flex-wrap: wrap;
 }
 .card-item{
-    max-width: 240px;
     width: 100%;
     background: #fff;
     display: flex;
@@ -111,7 +110,7 @@
 @media screen and (max-width:362px){
 
     .site-layout-content{
-        padding: 24px 16px;
+        padding: 28px 16px 0 16px
     }
     .main-text_box,
     .middle-text-box{
@@ -119,6 +118,9 @@
     }
     .main-text_box{
         height: 368px;
+    }
+    .card-text{
+        text-align: center;
     }
     .clip-path-container{
         top: 24px;

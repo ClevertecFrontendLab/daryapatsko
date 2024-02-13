@@ -58,10 +58,9 @@
    }
 }
 
-@media screen and (max-width:361px){
+@media screen and (max-width:362px){
 
     .footer-content{
-        margin-top: -5px;
         padding: 0 16px;
         min-height: auto;
         flex-direction: column-reverse;
@@ -76,5 +75,9 @@
     }
     .footer-buttons-links{
         padding: 15px 33px;
+    }
+    .footer-content.open,
+    .footer-content.close{
+        margin-top: 23px;
     }
 }

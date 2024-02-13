@@ -33,7 +33,7 @@ const ContentMain: FC<IContent> = ({ collapsed, setCollapsed }) => {
                     <p className='card-text'>Расписать тренировки</p>
                     <div className='card-description'>
                         <div className='card-description-box'>
-                            <HeartTwoTone twoToneColor={['#061178', '#061178']}/>
+                            <HeartTwoTone twoToneColor={['#2f54eb', '#2f54eb']}/>
                             <span>Тренировки</span>
                         </div>
                     </div>
@@ -42,7 +42,7 @@ const ContentMain: FC<IContent> = ({ collapsed, setCollapsed }) => {
                     <p className='card-text'>Назначить календарь</p>
                     <div className='card-description'>
                         <div className='card-description-box'>
-                            <CalendarTwoTone twoToneColor={['#061178', '#061178']}/>
+                            <CalendarTwoTone twoToneColor={['#2f54eb', '#2f54eb']}/>
                             <span>Календарь</span>
                         </div>
                     </div>
@@ -51,7 +51,7 @@ const ContentMain: FC<IContent> = ({ collapsed, setCollapsed }) => {
                     <p className='card-text'>Заполнить профиль</p>
                     <div className='card-description'>
                         <div className='card-description-box'>
-                            <IdcardTwoTone twoToneColor={['#061178', '#fff']} />
+                            <IdcardTwoTone twoToneColor={['#2f54eb', '#fff']} />
                             <span>Профиль</span>
                         </div>
                     </div>
@@ -59,7 +59,7 @@ const ContentMain: FC<IContent> = ({ collapsed, setCollapsed }) => {
             </div>
             <div className={`clip-path-container ${collapsed ? "" : 'open'}`} data-test-id={dataSize}
                 onClick={() => setCollapsed(!collapsed)} >
-               {collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
+               {collapsed ? <MenuUnfoldOutlined style={{color: '#8C8C8C' }}/> : <MenuFoldOutlined style={{color: '#8C8C8C' }}/>}
             </div>
         </Content>
     );

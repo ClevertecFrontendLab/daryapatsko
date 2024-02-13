@@ -1,3 +1,9 @@
+.ant-layout.ant-layout-has-sider{
+  background: no-repeat center/cover url('./../../../assets/bg-mainPage.png');
+  width: 100%;
+  min-height: 100vh;
+}
+
 .ant-layout-sider-children{
   padding-top: 30px;
   display: flex;
@@ -47,12 +53,8 @@
  }
 
  .ant-layout.site-layout{
-  background-image: url('./../../../assets/bg-mainPage.png');
-  background-repeat: no-repeat;
-  background-size: auto 100%;
-  background-position: center;
-  width: 100%;
-  min-height: 100vh;
+  min-height: 1024px;
+  background: transparent;
   position: relative;
   padding-bottom: 42px
 }

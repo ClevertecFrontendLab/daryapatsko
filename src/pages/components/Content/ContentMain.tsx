@@ -33,7 +33,7 @@ const ContentMain: FC<IContent> = ({ collapsed, setCollapsed }) => {
                     <p className='card-text'>Расписать тренировки</p>
                     <div className='card-description'>
                         <div className='card-description-box'>
-                            <HeartTwoTone />
+                            <HeartTwoTone twoToneColor={['#061178', '#061178']}/>
                             <span>Тренировки</span>
                         </div>
                     </div>
@@ -42,7 +42,7 @@ const ContentMain: FC<IContent> = ({ collapsed, setCollapsed }) => {
                     <p className='card-text'>Назначить календарь</p>
                     <div className='card-description'>
                         <div className='card-description-box'>
-                            <CalendarTwoTone />
+                            <CalendarTwoTone twoToneColor={['#061178', '#061178']}/>
                             <span>Календарь</span>
                         </div>
                     </div>
@@ -51,7 +51,7 @@ const ContentMain: FC<IContent> = ({ collapsed, setCollapsed }) => {
                     <p className='card-text'>Заполнить профиль</p>
                     <div className='card-description'>
                         <div className='card-description-box'>
-                            <IdcardTwoTone />
+                            <IdcardTwoTone twoToneColor={['#061178', '#fff']} />
                             <span>Профиль</span>
                         </div>
                     </div>

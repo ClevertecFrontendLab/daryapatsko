@@ -78,13 +78,14 @@
 }
 .clip-path-container{
     clip-path: polygon(0 0, 100% 20%, 100% 76%, 0% 100%);
+    padding: 10px 0;
     width: 20px;
     height: 66px;
     background-color: #fff;
     position: absolute;
     top: 50%;
-    left: 0;
-    transform: translate(-50%,0);
+    left: 9px;
+    transform: translate(-50%,-50%);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -126,7 +127,12 @@
         top: 24px;
         left: 10px;
     }
+    .clip-path-container,
     .clip-path-container.open{
+        transform: translate(-50%,0);
+    }
+    .clip-path-container.open{
+       
        left: 112px;
        top: 24px;
        z-index: 6;

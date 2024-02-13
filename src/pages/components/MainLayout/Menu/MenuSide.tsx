@@ -5,22 +5,22 @@ import './menuSide.css';
 const items =[
   {
     key: '1',
-    icon: <CalendarTwoTone twoToneColor='#061178'/>,
+    icon: <CalendarTwoTone twoToneColor={['#061178', '#061178']}/>,
     label: 'Календарь',
   },
   {
     key: '2',
-    icon: <HeartTwoTone twoToneColor='#061178'/>,
+    icon: <HeartTwoTone twoToneColor={['#061178', '#061178']}/>,
     label: 'Тренировки',
   },
   {
     key: '3',
-    icon: <TrophyTwoTone twoToneColor='#061178'/>,
+    icon: <TrophyTwoTone twoToneColor={['#061178', '#061178']}/>,
     label: 'Достижения',
   },
   {
     key: '4',
-    icon: <IdcardTwoTone twoToneColor='#061178'/>,
+    icon: <IdcardTwoTone twoToneColor={['#061178', '#fff']}/>,
     label: 'Профиль',
    },
 ]

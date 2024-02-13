@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import './MainLayout.css';
 import { Layout } from 'antd';
-const { Sider, Content } = Layout;
+const { Sider } = Layout;
 import clever from './../../../assets/Clever.svg';
 import fit from './../../../assets/fit.svg';
 import exitIcon from './../../../assets/exitIcon.svg';

@@ -1,7 +1,7 @@
 .site-layout-background{
     background: #f0f5ff;
     padding: 16px 24px;
-    max-height: 168px;
+    min-height: 168px; 
 }
 .ant-layout-header{
     height: auto;
@@ -15,29 +15,40 @@
     text-align: left;
 }
 .content__header{
+    width: 100%;
     padding-top: 14px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 }
+
 .content_header-title{
     color: rgb(38, 38, 38);
-    font-size: 38px;
+    font-size: 2.375rem;
     font-weight: 700;
     line-height: 130%;
     text-align: left;
-}
-p{
-    margin: 0;
-}
-h1{
     margin: 0;
 }
 .setting_box{
+    padding: 3px 15px;
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 .setting_box p{
+    margin: 0;
     padding-left: 10px;
+}
+
+@media screen and (max-width:835px) {
+    .site-layout-background{
+        min-height: 194px;
+    }
+    .content_header-title{
+        font-size: 24px;
+    }
+    .setting_box span{
+        visibility: hidden;
+    }
+    
 }

@@ -11,6 +11,7 @@ import HeaderMain from './../Header/HeaderMain';
 import './MainLayout.css';
 import MenuSide from './Menu/MenuSide';
 import ContentMain from '../Content/ContentMain';
+import Footer from '../Footer/Footer';
 
 export const MainLayout: React.FC = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -24,7 +25,7 @@ export const MainLayout: React.FC = () => {
              width={208} 
              theme='light'>
                 <div className='main_container-sider'>
-                    <div className='logo'>
+                    <div className={`logo ${collapsed ? 'logo-collapsed' : ''}`}>
                         {!collapsed && <img src={clever} className="clever" alt='clever' />}
                         <img src={fit} alt='fit' />
                     </div>
@@ -41,7 +42,8 @@ export const MainLayout: React.FC = () => {
             </Sider>
             <Layout className='site-layout'>
                 <HeaderMain/>
-              <ContentMain collapsed={collapsed} setCollapsed={setCollapsed}/>
+                <ContentMain collapsed={collapsed} setCollapsed={setCollapsed}/>
+                <Footer/>
             </Layout>
         </Layout>
     );

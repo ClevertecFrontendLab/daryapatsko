@@ -7,7 +7,9 @@
     padding: 0 18px;
 }
 .menu_list-item{
-    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    padding: 10px 0px;
 }
 .item-label.visible{
     visibility: visible;
@@ -24,3 +26,19 @@
     opacity: 0;
     transition: opacity 0.5s;
 }
+@media screen and (max-width:362px){
+   .menu_list{
+    margin-top: 16px;
+    padding: 0 8px;
+   
+   }
+   .item-label.visible{
+       padding: 0;
+   }
+   .menu_list-item{
+    padding: 12px 0;
+    }
+    .icon_menu{
+        display: none;
+    }
+  }

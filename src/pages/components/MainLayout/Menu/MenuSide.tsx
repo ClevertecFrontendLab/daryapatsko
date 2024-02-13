@@ -31,7 +31,7 @@ const MenuSide = ({collapsed} : {collapsed:boolean}) => {
     <ul className="menu_list">
       {items.map((el) => (
         <li key={el.key} className="menu_list-item">
-          {el.icon}
+          <div className='icon_menu'>{el.icon}</div>
           <span className={`item-label ${!collapsed ? 'visible' : ''}`}>{el.label}</span>
         </li>
       ))}

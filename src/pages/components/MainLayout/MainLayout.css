@@ -38,8 +38,7 @@
  }
  .side_footer-container a{
    display: flex;
-   align-items: center;
-   gap: 45px;
+   gap: 26px;
    color: #262626;
    font-size: 14px;
    font-weight: 400;
@@ -55,4 +54,33 @@
   width: 100%;
   min-height: 100vh;
   position: relative;
+  padding-bottom: 42px
+}
+
+@media screen and (max-width:362px){
+  .ant-layout-sider-children{
+    padding-top: 0;
+  }
+  .logo{
+    padding: 16px;
+  }
+  .clever {
+    max-width: 52px;
+  }
+  .fit{
+    max-width: 19px;
+  }
+  .img-exit{
+    display: none;
+  }
+  .side_footer-container a{
+    justify-content: center;
+  }
+  .ant-layout-sider{
+    height: 640px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+  }
 }

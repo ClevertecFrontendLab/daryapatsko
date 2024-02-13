@@ -57,7 +57,7 @@ const ContentMain: FC<IContent> = ({ collapsed, setCollapsed }) => {
                     </div>
                 </div>
             </div>
-            <div className='clip-path-container' data-test-id={dataSize}
+            <div className={`clip-path-container ${collapsed ? "" : 'open'}`} data-test-id={dataSize}
                 onClick={() => setCollapsed(!collapsed)} >
                {collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
             </div>

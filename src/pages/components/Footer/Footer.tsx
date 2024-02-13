@@ -3,9 +3,9 @@ import android from './../../../assets/android.svg';
 import apple from './../../../assets/apple.svg';
 import './footer.css';
 
-const Footer = () => {
+const Footer = ({collapsed} : {collapsed:boolean}) => {
     return (
-        <div className='footer-content'>
+        <div className={`footer-content ${collapsed ? "close" : 'open'}`}>
             <a href='!#' className='footer-link footer-content-link'>
                 Смотреть отзывы
             </a>

@@ -1,0 +1,91 @@
+.ant-layout.ant-layout-has-sider{
+  background: no-repeat center/cover url('./../../../assets/bg-mainPage.png');
+  width: 100%;
+  min-height: 100vh;
+}
+
+.ant-layout-sider-children{
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.main_container-sider{
+  display: flex;
+  flex-direction: column;
+}
+.logo {
+  padding: 10px 0 0 0 ;
+  display: flex;
+  align-self: center;
+  transition: all  0.5s ease-in-out;
+}
+.logo-collapsed{
+  padding: 10px 0 0 0;
+}
+.ant-layout-sider-collapsed .clever{
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.logo:first-child{
+  margin-top: 7px;
+}
+.ant-layout-sider{
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+  
+}
+
+.side_footer-container{
+  padding: 11px 16px;
+ }
+ .side_footer{
+  box-shadow: inset 0px 1px 0px 0px rgb(240, 240, 240);
+ }
+ .side_footer-container a{
+   display: flex;
+   gap: 26px;
+   color: #262626;
+   font-size: 14px;
+   font-weight: 400;
+   line-height: 130%;
+   text-align: center;
+ }
+
+ .ant-layout.site-layout{
+  min-height: 1024px;
+  background: transparent;
+  position: relative;
+  padding-bottom: 42px
+}
+
+@media screen and (max-width:362px){
+  .ant-layout.site-layout{
+    min-height: 100%;
+  }
+  .ant-layout-sider-children{
+    padding-top: 0;
+  }
+  .logo{
+    padding: 16px;
+  }
+  .clever {
+    max-width: 52px;
+  }
+  .fit{
+    max-width: 19px;
+  }
+  .img-exit{
+    display: none;
+  }
+  .side_footer-container a{
+    justify-content: center;
+  }
+  .ant-layout-sider{
+    height: 640px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+  }
+}

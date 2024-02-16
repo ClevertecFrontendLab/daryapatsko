@@ -1,0 +1,35 @@
+.ant-input-affix-wrapper{
+padding: 0;
+}
+.ant-input-prefix{
+    border-right: 1px solid #d9d9d9;
+    border-radius: 2px 0 0 2px;
+}
+.site-form-item-icon{
+    width: 71px;
+    
+    /* padding: 0px 12px; */
+}
+.site-form-item-icon::before{
+    display: flex;
+    align-items: center;
+
+    content: 'email';
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 130%;
+    text-align: center;
+    color: #262626;
+    
+    
+}
+.ant-form-item-control-input{
+    min-height: 40px;
+}
+.ant-form-item-control-input-content{
+    display: flex;
+    justify-content: space-between;
+}

@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { HistoryRouter } from 'redux-first-history/rr6';
 
 import { store, history } from '@redux/configure-store';
-// import { MainPage } from './pages';
 
 import 'normalize.css';
 import './index.css';
@@ -12,7 +11,6 @@ import { routes } from './routes/routes';
 
 const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
-console.log(history)
 
 root.render(
     <React.StrictMode>

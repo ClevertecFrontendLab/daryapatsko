@@ -1,6 +1,6 @@
-import { UserOutlined } from '@ant-design/icons';
 import './SignIn.css';
 import { Button, Checkbox, Form, Input } from 'antd';
+import { Link } from 'react-router-dom';
 
 export const SignIn:React.FC = () => {
   const onFinish = (values: any) => {
@@ -22,14 +22,14 @@ export const SignIn:React.FC = () => {
       <Form.Item
         id="email-input"
         name="email"
-        rules={[{ required: true, message: 'Please input your email!' }]}
+        rules={[{ required: true }]}
       >
-        <Input  prefix={<div className="site-form-item-icon" />}/>
+        <Input  prefix={<div className="site-form-item-icon" >e-mail:</div>}/>
       </Form.Item>
 
       <Form.Item
         name="password"
-        rules={[{ required: true, message: 'Please input your password!' }]}
+        rules={[{ required: true }]}
       >
         <Input.Password placeholder="Пароль"/>
       </Form.Item>
@@ -38,16 +38,17 @@ export const SignIn:React.FC = () => {
           <Checkbox>Запомнить меня</Checkbox>
         </Form.Item>
 
-        <a className="login-form-forgot" href="">
+        <Link className="login-form-forgot" to={'/'}>
           Забыли пароль?
-        </a>
+        </Link>
       </Form.Item>
 
-      <Form.Item>
         <Button type="primary" htmlType="submit" className="login-form-button">
           Войти
         </Button>
-      </Form.Item>
+        <Button type="primary" htmlType="submit" className="google-form-button">
+          Войти через Google
+        </Button>
     </Form>
   )
 }

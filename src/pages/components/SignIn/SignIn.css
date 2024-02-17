@@ -1,35 +1,70 @@
 .ant-input-affix-wrapper{
-padding: 0;
+    padding: 0;
 }
 .ant-input-prefix{
     border-right: 1px solid #d9d9d9;
     border-radius: 2px 0 0 2px;
 }
+
+.ant-input-affix-wrapper.ant-input-password{
+    padding: 4px 12px;
+}
+.ant-form-item{
+    margin-bottom: 32px;
+}
 .site-form-item-icon{
     width: 71px;
-    
-    /* padding: 0px 12px; */
 }
-.site-form-item-icon::before{
-    display: flex;
-    align-items: center;
-
-    content: 'email';
-    position: absolute;
-    top: 0;
-    left: 0;
+.ant-input-affix-wrapper::before{
+    display: none;
+}
+.site-form-item-icon{
+    background:  #fafafa;
     font-weight: 400;
     font-size: 14px;
     line-height: 130%;
     text-align: center;
-    color: #262626;
-    
-    
+    color: #262626;   
 }
 .ant-form-item-control-input{
-    min-height: 40px;
+    height: auto;
 }
 .ant-form-item-control-input-content{
+    height: 40px;
     display: flex;
     justify-content: space-between;
+}
+.ant-checkbox + span{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 130%;
+    color: rgba(0, 0, 0, 0.85);
+}
+.login-form-forgot{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    color:  #2f54eb;
+}
+.ant-btn-primary{
+    min-height: 40px;
+    width: 100%;
+    font-size: 16px;
+    line-height: 130%;
+    text-align: center;
+    color:  #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.google-form-button{
+    border: none;
+    margin-top: 24px;
+    background-color: #fff;
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.02);
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+}
+.google-form-button > span{
+    color: #262626;
 }

@@ -1,0 +1,12 @@
+.ant-input-affix-wrapper.ant-input-password{
+    height: 40px;
+}
+.span-password{
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 130%;
+    color:  #8c8c8c;
+}
+.password-box{
+    padding-bottom: 14px;
+}

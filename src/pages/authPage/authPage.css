@@ -38,14 +38,3 @@
     align-self: center;
     margin-bottom: 48px;
 }
-.ant-tabs.ant-tabs-top{
-    width: 100%;   
-}
-.ant-tabs-tab{
-    width: 184px;
-    font-size: 16px;
-    justify-content: center;
-}
-.ant-tabs-tab + .ant-tabs-tab{
-    margin: 0;
-}

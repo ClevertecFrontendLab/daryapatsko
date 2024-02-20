@@ -1,36 +1,52 @@
 import './SignUp.css';
 import { Button, Form, Input } from 'antd';
+import { useDispatch } from 'react-redux';
+
+import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
+import { CREATE_USER } from '@redux/SignUpSlice';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 export const SignUp: React.FC = () => {
-    const onFinish = (values: any) => {
-        console.log('Success:', values);
+    const dispatch = useDispatch<ThunkDispatch<any, object, AnyAction>>();
+    const navigate = useNavigate();
+    
+    const onFinish = async (values: any) => {
+        try {
+        await dispatch(CREATE_USER(values, navigate))
+        } catch (err) {
+            console.log(err);
+        }
     };
 
-    const onFinishFailed = (errorInfo: any) => {
-        console.log('Failed:', errorInfo);
-    };
+    // const onFinishFailed = (errorInfo: any) => {
+    //     console.log('Failed:', errorInfo);
+    // };
 
     return (
         <Form
             name='basic'
             initialValues={{ remember: true }}
             onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
+            // onFinishFailed={onFinishFailed}
             autoComplete='off'
         >
-            <Form.Item id='email-input' name='email' rules={[{ required: true }]}>
-                <Input prefix={<div className='site-form-item-icon'>e-mail:</div>} />
+            <Form.Item id='email-input' name='email' rules={[{ required: true, message: '' }]}>
+                <Input addonBefore='e-mail' />
             </Form.Item>
 
             <Form.Item
-            className='password-box'
+                className='password-box'
                 name='password'
-                rules={[{ required: true, message: 'Please input your password!' }]}
+                help='Пароль не менее 8 символов, с заглавной буквы и цифрой'
+                rules={[{ required: true, 
+                 },{
+                    pattern: /^(?=.*[A-Z])(?=.*\d).{8,}$/,
+                 }]}
+                 
             >
-                <div className='input_box'>
                     <Input.Password placeholder='Пароль' />
-                    <span className='span-password'>Пароль не менее 8 символов, с заглавной буквы и цифрой</span>
-                </div>
+                   
             </Form.Item>
 
             <Form.Item
@@ -40,7 +56,7 @@ export const SignUp: React.FC = () => {
                 rules={[
                     {
                         required: true,
-                        message: 'Please confirm your password!',
+                        message: '',
                     },
                     ({ getFieldValue }) => ({
                         validator(_, value) {
@@ -48,7 +64,7 @@ export const SignUp: React.FC = () => {
                                 return Promise.resolve();
                             }
                             return Promise.reject(
-                                new Error('The two passwords that you entered do not match!'),
+                                new Error('Пароли не совпадают'),
                             );
                         },
                     }),

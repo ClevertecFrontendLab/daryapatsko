@@ -1,9 +1,15 @@
 .ant-input-affix-wrapper{
     padding: 0;
 }
-.ant-input-prefix{
-    border-right: 1px solid #d9d9d9;
-    border-radius: 2px 0 0 2px;
+.ant-input-group-addon{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 130%;
+    text-align: center;
+    color: #262626;  
+}
+#basic_email{
+    height: 40px;
 }
 
 .ant-input-affix-wrapper.ant-input-password{
@@ -11,20 +17,6 @@
 }
 .ant-form-item{
     margin-bottom: 32px;
-}
-.site-form-item-icon{
-    width: 71px;
-}
-.ant-input-affix-wrapper::before{
-    display: none;
-}
-.site-form-item-icon{
-    background:  #fafafa;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 130%;
-    text-align: center;
-    color: #262626;   
 }
 .ant-form-item-control-input{
     height: auto;

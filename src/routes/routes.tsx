@@ -1,6 +1,7 @@
 import { MainPage } from '@pages/main-page';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { AuthPage } from '@pages/authPage';
+import { ErrorPage } from '@pages/errorPage';
 import { SignUp } from '@pages/components/SignUp';
 import { SignIn } from '@pages/components/SignIn';
 import { Paths } from './path';
@@ -12,6 +13,7 @@ export const routes = (
             <Route index element={<SignIn />} />
             <Route path={Paths.AUTH_REGISTRATION} element={<SignUp />} />  
         </Route>
+        <Route path={Paths.ERROR} element={<ErrorPage/>}></Route>
         
     </Routes>
 );

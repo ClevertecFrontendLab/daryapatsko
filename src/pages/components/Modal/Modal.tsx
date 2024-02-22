@@ -1,32 +1,22 @@
 import { Button, Modal } from 'antd';
 import { useState } from 'react';
+import './modal.css';
 
-export const ModalComponent = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-
+interface IModal{
+img: string,
+title: string,
+description: string,
+nameBtn: string,
+}
+export const ModalComponent:React.FC<IModal> = ({img, title, description,nameBtn}) => {
+  
   return (
-    <>
-      <Button type="primary" onClick={showModal}>
-        Open Modal
-      </Button>
-      <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+      <Modal open={true} closable={false}>
+        <img src={img} alt={img} />
+        <h3>{title}</h3>
+        <p>{description}</p>
       </Modal>
-    </>
   );
 };
 

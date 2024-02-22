@@ -3,32 +3,46 @@ import { Button, Form, Input } from 'antd';
 import { useDispatch } from 'react-redux';
 
 import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
-import { CREATE_USER } from '@redux/SignUpSlice';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useForm } from 'antd/lib/form/Form';
+import { useAuthRegistationMutation } from '@redux/commonApi';
+import { Paths } from './../../../routes/path';
+import { GooglePlusOutlined } from '@ant-design/icons';
 
 export const SignUp: React.FC = () => {
     const dispatch = useDispatch<ThunkDispatch<any, object, AnyAction>>();
+    const [authRegistation, { isLoading, isSuccess }] = useAuthRegistationMutation()
     const navigate = useNavigate();
+    const [form] = useForm()
+    console.log(form)
     
     const onFinish = async (values: any) => {
-        try {
-        await dispatch(CREATE_USER(values, navigate))
-        } catch (err) {
-            console.log(err);
-        }
+        const {email, password} = values
+        await authRegistation({email,password})
+        .unwrap()
+        .catch((err) => {
+            if(err.status === 409){
+                navigate(`${Paths.RESULT}/${Paths.ERROR_CHECK}`)
+            }else{
+                navigate(`${Paths.RESULT}/${Paths.ERROR}`)
+            }
+        })
     };
 
-    // const onFinishFailed = (errorInfo: any) => {
-    //     console.log('Failed:', errorInfo);
-    // };
+    const onFinishFailed = (errorInfo: any) => {
+        form.resetFields()
+        console.log('Failed:', errorInfo);
+    };
+    if(isSuccess){
+        navigate(`${Paths.RESULT}/${Paths.SUCCESS}`)
+    }
 
     return (
         <Form
             name='basic'
             initialValues={{ remember: true }}
             onFinish={onFinish}
-            // onFinishFailed={onFinishFailed}
+            onFinishFailed={onFinishFailed}
             autoComplete='off'
         >
             <Form.Item id='email-input' name='email' rules={[{ required: true, message: '' }]}>
@@ -72,13 +86,16 @@ export const SignUp: React.FC = () => {
             >
                 <Input.Password placeholder='Повторите пароль' />
             </Form.Item>
-
-            <Button type='primary' htmlType='submit' className='login-form-button'>
+<div className="btn_box">
+<Button type='primary' htmlType='submit' className='login-form-button'>
                 Войти
             </Button>
             <Button type='primary' htmlType='submit' className='google-form-button'>
-                Войти через Google
+                <GooglePlusOutlined style={{marginTop: '4px'}}/>
+                Регистрация через Google
             </Button>
+</div>
+            
         </Form>
     );
 };

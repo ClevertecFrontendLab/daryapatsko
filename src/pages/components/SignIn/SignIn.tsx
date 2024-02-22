@@ -1,27 +1,31 @@
-import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
 import './SignIn.css';
 import { Button, Checkbox, Form, Input } from 'antd';
-import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { SIGN_IN } from '@redux/SignInSlice';
-import { useEffect } from 'react';
-import { useAuthMutation } from '@redux/commonApi';
+import { useAuthLoginMutation } from '@redux/commonApi';
+import { Paths } from './../../../routes/path';
+import googleIcon from './../../../assets/registration/googleIcon.svg';
 import Loader from '../Loader/Loader';
+import { useEffect } from 'react';
+import { GooglePlusOutlined } from '@ant-design/icons';
 
 export const SignIn: React.FC = () => {
-    const [auth, { isLoading}]  = useAuthMutation();
+    const navigate = useNavigate()
+    const [auth, { isLoading,isSuccess }]  = useAuthLoginMutation();
 
     const onFinish = async (values: any) => {
-        console.log(123)
-        // auth({ email: values.email, password: values.password })
-        // .unwrap()
-        // .then((res) => {
-        //     console.log(res)
-        //     // values.remember ? localStorage.setItem('token', res.accessToken) : sessionStorage.setItem('token', res.accessToken);
+        auth({ email: values.email, password: values.password })
+        .unwrap()
+        .then((res) => {
+            values.remember ? localStorage.setItem('token', res.accessToken) : sessionStorage.setItem('token', res.accessToken);
            
-        // }).catch();
-        console.log('Received values of form: ', values);
+        }).catch((err)=>{
+           err && navigate(`${Paths.RESULT}/${Paths.ERROR_LOGIN}`)
+        });
       };
+      useEffect(()=>{
+        isSuccess &&  navigate(`${Paths.MAIN}`)
+      },[isSuccess])
+    
 
     return (
         <>
@@ -44,7 +48,7 @@ export const SignIn: React.FC = () => {
             }]}>
                 <Input.Password placeholder='Пароль' />
             </Form.Item>
-            <Form.Item>
+            <Form.Item className='form_option'>
                 <Form.Item name='remember' valuePropName='checked' noStyle>
                     <Checkbox>Запомнить меня</Checkbox>
                 </Form.Item>
@@ -58,6 +62,7 @@ export const SignIn: React.FC = () => {
                 Войти
             </Button>
             <Button type='primary' htmlType='submit' className='google-form-button'>
+                <GooglePlusOutlined style={{marginTop: '4px'}} />
                 Войти через Google
             </Button>
         </Form>

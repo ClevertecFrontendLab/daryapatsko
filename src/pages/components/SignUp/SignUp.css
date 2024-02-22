@@ -10,3 +10,19 @@
     line-height: 130%;
     color:  #8c8c8c;
 }
+.ant-tabs-content.ant-tabs-content-top{
+    margin-top: 10px;
+}
+.btn_box{
+    margin-top: 60px;
+}
+.google-form-button{
+    
+}
+.ant-btn > .anticon + span, .ant-btn > span + .anticon{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    text-align: center;
+    color:  #262626;
+}

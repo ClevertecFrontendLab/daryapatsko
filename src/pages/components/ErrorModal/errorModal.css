@@ -1,14 +1,13 @@
 .ant-btn.ant-btn-default{
     display: none;
 }
-.ant-modal-root{
+.ant-modal-wrap{
     max-width: 1440px;
 }
 .ant-modal-centered .ant-modal{
     margin-top: 90px;
     border-radius: 2px;
     padding: 64px 32px;
-    height: 345px;
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
     background: #fff;
     text-align: center;
@@ -33,7 +32,6 @@ p{
     padding: 29px 0 24px 0;
 }
 .title_modal{
-
     font-weight: 500;
     font-size: 26px;
     line-height: 130%;

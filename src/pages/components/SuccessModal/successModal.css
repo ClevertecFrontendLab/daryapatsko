@@ -1,0 +1,13 @@
+.text_modal_success{
+    padding: 0 10px;
+}
+
+.ant-modal-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.description_success{
+    padding: 25px 0 24px 0;
+}

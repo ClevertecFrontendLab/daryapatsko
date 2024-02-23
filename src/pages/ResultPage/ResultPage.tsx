@@ -1,12 +1,13 @@
-import './errorPage.css';
+import './ResultPage.css';
 import { ResultScreen } from '@pages/components/ResultScreen';
-import errorIcon from '../../assets/registration/error.svg';
-import Modal from 'antd/lib/modal/Modal';
 
-export const ErrorPage = () => {
+import { Outlet } from 'react-router-dom';
+
+export const ResultPage = () => {
     return (
         <ResultScreen>
-            <Modal
+            <Outlet/>
+            {/* <Modal
                 open={true}
                 closable={false}
                 okText={'Повторить'}
@@ -21,7 +22,7 @@ export const ErrorPage = () => {
                   <p className='text_modal'>Что-то пошло не так. Попробуйте еще раз</p>
                 </div>
                 
-            </Modal>
+            </Modal> */}
         </ResultScreen>
     );
 };

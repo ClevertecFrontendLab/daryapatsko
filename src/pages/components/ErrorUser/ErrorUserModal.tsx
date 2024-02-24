@@ -1,6 +1,7 @@
 import './ErrorUserModal.css';
 import errorUser from './../../../assets/registration/errorUser.svg';
 import Modal from 'antd/lib/modal';
+import { history } from '@redux/configure-store';
 
 export const ErrorUser = () => {
     return (
@@ -9,7 +10,7 @@ export const ErrorUser = () => {
             closable={false}
             okText={'Назад к регистрации'}
             cancelText={false}
-            onOk={() => console.log(132)}
+            onOk={() => history.push('/auth/registration')}
             width={'539px'}
             centered={true}
         >

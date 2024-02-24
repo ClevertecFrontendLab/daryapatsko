@@ -1,6 +1,7 @@
 import Modal from 'antd/lib/modal';
 import './errorModal.css';
 import errorIcon from '../../../assets/registration/error.svg';
+import { history } from '@redux/configure-store';
 
 const ErrorModal = () => {
     return (
@@ -9,7 +10,7 @@ const ErrorModal = () => {
             closable={false}
             okText={'Повторить'}
             cancelText={false}
-            onOk={() => console.log(132)}
+            onOk={() => history.push('/auth')}
             width={'539px'}
             centered={true}
         >

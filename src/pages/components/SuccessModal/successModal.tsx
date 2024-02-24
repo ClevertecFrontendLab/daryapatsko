@@ -1,6 +1,7 @@
 import Modal from 'antd/lib/modal';
 import './successModal.css';
 import successIcon from './../../../assets/registration/successIcon.svg';
+import { history } from '@redux/configure-store';
 
 export const SuccessModal = () => {
     return (
@@ -9,7 +10,7 @@ export const SuccessModal = () => {
             closable={false}
             okText={'Войти'}
             cancelText={false}
-            onOk={() => console.log(132)}
+            onOk={() => history.push('/auth') }
             width={'539px'}
             centered={true}
         >

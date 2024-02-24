@@ -23,10 +23,7 @@ export const routes = (
             <Route path={Paths.SUCCESS} element={<SuccessModal/>}/>
             <Route path={Paths.ERROR_USER} element={<ErrorUser/>}/>
             <Route path={Paths.ERROR} element={<Error/>}/>
-            <Route path={Paths.ERROR_CHECK} element={<ErrorCheck/>}/>
-
-
-
+            <Route path={Paths.ERROR_CHECK} element={<ErrorCheck/>}/>s
         </Route>
         
     </Routes>

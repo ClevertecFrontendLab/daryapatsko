@@ -1,23 +1,25 @@
 import './SignIn.css';
 import { Button, Checkbox, Form, Input } from 'antd';
 import { useAuthLoginMutation } from '@redux/commonApi';
+import { useCheckEmailMutation } from '@redux/commonApi';
 import { Paths } from './../../../routes/path';
 import { useState } from 'react';
 import { GooglePlusOutlined } from '@ant-design/icons';
 import { setUser } from '@redux/userSlice';
-import { useDispatch } from 'react-redux';
-import { history } from '@redux/configure-store';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState, history } from '@redux/configure-store';
 import Loader from '../Loader/Loader';
 
 export const SignIn: React.FC = () => {
     const dispatch = useDispatch();
+    const [email, setEmail] = useState('')
     const [isEmailValid, setIsEmailValid] = useState(false);
-    console.log(isEmailValid);
+    const [auth, { isSuccess }] = useAuthLoginMutation();
+    const [checkEmail] = useCheckEmailMutation();
 
-    const [auth, { isLoading, isSuccess }] = useAuthLoginMutation();
     const emailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const email = e.target.value;
-        console.log(email)
+        setEmail(email)
         setIsEmailValid(!validateEmail(email));
     };
     const validateEmail = (email: string) => {
@@ -33,7 +35,7 @@ export const SignIn: React.FC = () => {
                 values.remember
                     ? localStorage.setItem('token', res.accessToken)
                     : sessionStorage.setItem('token', res.accessToken);
-                    history.push(`${Paths.MAIN}`);
+                history.push(`${Paths.MAIN}`);
             })
             .catch((err) => {
                 if (err) {
@@ -41,18 +43,31 @@ export const SignIn: React.FC = () => {
                 }
             });
     };
+
+    const handleForgotPassword = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault()
+        dispatch(setUser({email}))
+        checkEmail({ email })
+        .unwrap()
+        .then(() => history.push(`${Paths.AUTH_lOGIN}/${Paths.AUTH_CONFIRM}`))
+        .catch((err) => {
+            if(err.status === 404 && err.data.message === 'Email не найден') {
+                history.push(`${Paths.RESULT}/${Paths.ERROR_CHECK}`)
+            }else{
+                history.push(`${Paths.RESULT}/${Paths.ERROR_CHECK_EMAIL}`)
+            }  
+        })
+    };
     // useEffect(() => {
-        
     // }, [ history]);
 
     return (
         <>
-            {isLoading && <Loader />}
+            {/* {isLoading && <Loader />} */}
             <Form
                 name='basic'
                 initialValues={{ remember: true }}
                 onFinish={onFinish}
-                // onFinishFailed={onFinishFailed}
                 autoComplete='off'
             >
                 <Form.Item
@@ -66,7 +81,7 @@ export const SignIn: React.FC = () => {
                         },
                     ]}
                 >
-                    <Input addonBefore='e-mail' onChange={emailChange} />
+                    <Input addonBefore='e-mail' onChange={emailChange} data-test-id='login-email'/>
                 </Form.Item>
 
                 <Form.Item
@@ -82,23 +97,22 @@ export const SignIn: React.FC = () => {
                         },
                     ]}
                 >
-                    <Input.Password placeholder='Пароль' />
+                    <Input.Password placeholder='Пароль' data-test-id='login-password'/>
                 </Form.Item>
                 <Form.Item className='form_option'>
                     <Form.Item name='remember' valuePropName='checked' noStyle>
-                        <Checkbox>Запомнить меня</Checkbox>
+                        <Checkbox data-test-id='login-remember'>Запомнить меня</Checkbox>
                     </Form.Item>
 
-                    <button
-                        className='login-form-forgot'
-                        disabled={isEmailValid}
-                        // onClick={() => history.push(`${Paths.RESULT}/${Paths.FORGOT_PASSWORD}`)}
-                    >
+                    <button className='login-form-forgot' 
+                     data-test-id='login-forgot-button'
+                    disabled={isEmailValid}
+                    onClick={handleForgotPassword}>
                         Забыли пароль?
                     </button>
                 </Form.Item>
 
-                <Button type='primary' htmlType='submit' className='login-form-button'>
+                <Button type='primary' htmlType='submit' className='login-form-button' data-test-id='login-submit-button'>
                     Войти
                 </Button>
                 <Button type='primary' htmlType='submit' className='google-form-button'>

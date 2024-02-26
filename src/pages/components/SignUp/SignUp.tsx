@@ -2,7 +2,7 @@ import './SignUp.css';
 import { Button, Form, Input } from 'antd';
 import { useDispatch } from 'react-redux';
 import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
-import { useNavigate } from 'react-router-dom';
+
 import { useForm } from 'antd/lib/form/Form';
 import { useAuthRegistationMutation } from '@redux/commonApi';
 import { Paths } from './../../../routes/path';
@@ -13,7 +13,6 @@ export const SignUp: React.FC = () => {
     const [form] = useForm();
     const dispatch = useDispatch<ThunkDispatch<any, object, AnyAction>>();
     const [authRegistation, { isLoading, isSuccess }] = useAuthRegistationMutation();
-    const navigate = useNavigate();
 
     const onFinish = async (values: any) => {
         const { email, password } = values;
@@ -56,7 +55,7 @@ export const SignUp: React.FC = () => {
                     },
                 ]}
             >
-                <Input addonBefore='e-mail' />
+                <Input addonBefore='e-mail' data-test-id='registration-email'/>
             </Form.Item>
 
             <Form.Item
@@ -70,7 +69,7 @@ export const SignUp: React.FC = () => {
                     },
                 ]}
             >
-                <Input.Password placeholder='Пароль' />
+                <Input.Password placeholder='Пароль' data-test-id='registration-password'/>
             </Form.Item>
 
             <Form.Item
@@ -92,10 +91,10 @@ export const SignUp: React.FC = () => {
                     }),
                 ]}
             >
-                <Input.Password placeholder='Повторите пароль' />
+                <Input.Password placeholder='Повторите пароль' data-test-id='registration-confirm-password'/>
             </Form.Item>
             <div className='btn_box'>
-                <Button type='primary' htmlType='submit' className='login-form-button'>
+                <Button type='primary' htmlType='submit' className='login-form-button'  data-test-id='registration-submit-button'>
                     Войти
                 </Button>
                 <Button type='primary' htmlType='submit' className='google-form-button'>

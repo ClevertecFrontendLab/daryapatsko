@@ -8,7 +8,8 @@ export const ErrorUser = () => {
         <Modal
             open={true}
             closable={false}
-            okText={'Назад к регистрации'}
+            okText={<span data-test-id='registration-back-button'
+            >Назад к регистрации</span>}
             cancelText={false}
             onOk={() => history.push('/auth/registration')}
             width={'539px'}

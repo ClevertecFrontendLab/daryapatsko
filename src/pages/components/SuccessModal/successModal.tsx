@@ -8,13 +8,14 @@ export const SuccessModal = () => {
         <Modal
             open={true}
             closable={false}
-            okText={'Войти'}
+            okText={<span data-test-id='registration-enter-button'
+            >Войти</span>}
             cancelText={false}
             onOk={() => history.push('/auth') }
             width={'539px'}
             centered={true}
         >
-            <img src={successIcon} alt='error' />
+            <img src={successIcon} alt='success' />
             <div className='description_modal description_success' >
                 <p className='title_modal'>Регистрация успешна</p>
                 <p className='text_modal text_modal_success'>

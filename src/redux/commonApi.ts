@@ -29,8 +29,32 @@ export const authApi = createApi({
               method: 'POST',
               body,
             })
+        }),
+        checkEmail: builder.mutation({
+            query: (email)=>({
+                url: 'auth/check-email',
+                method: 'POST',
+                body: email,
+            })
+        }),
+        confirmEmail: builder.mutation({
+            query: (body)=>({
+                url: 'auth/confirm-email',
+                method: 'POST',
+                body,
+                credentials: 'include',
+            })
+        }),
+        changePassword: builder.mutation({
+            query: (body)=>({
+                url: 'auth/change-password',
+                method: 'POST',
+                body,
+                credentials: 'include',
+            })
         })
+
     }),
 });
 
-export const { useAuthLoginMutation, useAuthRegistationMutation } = authApi;
+export const { useAuthLoginMutation, useAuthRegistationMutation, useCheckEmailMutation, useChangePasswordMutation, useConfirmEmailMutation } = authApi;

@@ -7,7 +7,7 @@ export const Error = () => {
     <Modal
     open={true}
     closable={false}
-    okText={'Повторить'}
+    okText={<span data-test-id='registration-retry-button'>Повторить</span>}
     cancelText={false}
     onOk={() => history.push('auth/registration')}
     width={'539px'}

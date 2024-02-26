@@ -8,7 +8,8 @@ const ErrorModal = () => {
         <Modal
             open={true}
             closable={false}
-            okText={'Повторить'}
+            okText={<span data-test-id='login-retry-button'
+            >Повторить</span>}
             cancelText={false}
             onOk={() => history.push('/auth')}
             width={'539px'}

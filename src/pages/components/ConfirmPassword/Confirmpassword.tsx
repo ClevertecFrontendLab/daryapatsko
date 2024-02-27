@@ -13,7 +13,6 @@ export const ConfirmPassword = () => {
     const [value, setValue] = useState('')
     const [confirmEmail, {isError}] = useConfirmEmailMutation()
     const email = useSelector((state:RootState) => state.user.email)
-    console.log(value)
 
     return (
         <Modal
@@ -44,9 +43,9 @@ export const ConfirmPassword = () => {
                 onChange={(data) => {
                     setValue(data)
                 }}
-                onComplete={(value:string)=>{
-                    if(value.length === 6){
-                        confirmEmail({email, value})
+                onComplete={(code:string)=>{
+                    if(code.length === 6){
+                        confirmEmail({email, code})
                         .unwrap()
                         .then((res)=>{
                             history.push('/auth/change-password')

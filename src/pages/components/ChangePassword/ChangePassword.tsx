@@ -1,45 +1,56 @@
 import Modal from 'antd/lib/modal/Modal';
 import './ChangePassword.css';
-import { Form, Input } from 'antd';
+import { Button, Form, Input } from 'antd';
 import { useChangePasswordMutation } from '@redux/commonApi';
 import { history } from '@redux/configure-store';
+import { Paths } from './../../../routes/path';
+import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 export const ChangePassword = () => {
-    const [changePassword, {isError}] = useChangePasswordMutation()
-    console.log(history)
+    const [changePassword, { isError }] = useChangePasswordMutation();
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const location = useLocation();
     const onFinish = async (values: any) => {
         const { password, confirmPassword } = values;
         await changePassword({ password, confirmPassword })
             .unwrap()
             .then((res) => {
-                history.push('/result/success-change-password')
+                history.push(`${Paths.RESULT}/${Paths.SUCCESS_CHANGE_PASSWORD}`);
             })
             .catch((err) => {
-               history.push('/result/error-change-password')
+                history.push(`${Paths.RESULT}/${Paths.ERROR_CHANGE_PASSWORD}`);
             });
     };
+    console.log(password);
+    console.log(confirmPassword);
+    useEffect(() => {
+        if (location.state?.state?.from === '/result/error-change-password'){
+            onFinish({password, confirmPassword})
+        }
+    },[location])
     return (
         <Modal
             open={true}
             closable={false}
-            okText={<span  data-test-id='change-submit-button'>Сохранить</span>}
+            // okText={<span  data-test-id='change-submit-button'>Сохранить</span>}
             cancelText={false}
-            onOk={onFinish}
+            // onOk={onFinish}
             width={'539px'}
             centered={true}
-            style={{height:'419px'}}
+            style={{ height: '419px' }}
         >
             <p className='title_modal title_change-password'>Восстановление аккауанта</p>
             <Form
                 name='basic'
+                onFinish={onFinish}
                 initialValues={{ remember: true }}
-                // onFinish={onFinish}
-                // onFinishFailed={onFinishFailed}
                 autoComplete='off'
                 style={{
-                    width:'368px',
-                    marginBottom:'30px',
-                    textAlign:'left',
+                    width: '368px',
+                    marginBottom: '30px',
+                    textAlign: 'left',
                 }}
             >
                 <Form.Item
@@ -52,11 +63,15 @@ export const ChangePassword = () => {
                         },
                     ]}
                 >
-                    <Input.Password placeholder='Новый пароль'  data-test-id='change-password'/>
+                    <Input.Password
+                        placeholder='Новый пароль'
+                        // onChange={passwordChange}
+                        data-test-id='change-password'
+                    />
                 </Form.Item>
 
                 <Form.Item
-                    name='confirm'
+                    name='confirmPassword'
                     dependencies={['password']}
                     hasFeedback
                     rules={[
@@ -74,8 +89,15 @@ export const ChangePassword = () => {
                         }),
                     ]}
                 >
-                    <Input.Password placeholder='Повторите пароль' data-test-id='change-confirm-password'/>
+                    <Input.Password
+                        placeholder='Повторите пароль'
+                        // onChange={confirmPasswordChange}
+                        data-test-id='change-confirm-password'
+                    />
                 </Form.Item>
+                <Button type='primary' htmlType='submit'>
+                    Сохранить
+                </Button>
             </Form>
         </Modal>
     );

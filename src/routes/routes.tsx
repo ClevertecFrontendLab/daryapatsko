@@ -1,5 +1,5 @@
 import { MainPage } from '@pages/main-page';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { AuthPage } from '@pages/authPage';
 import { ResultPage } from '@pages/ResultPage';
 import { SignUp } from '@pages/components/SignUp';
@@ -16,8 +16,10 @@ import { ErrorChangePassword } from '@pages/components/ErrorChangePassword';
 import { SuccessChangePassword } from '@pages/components/SuccessChangepassword';
 import { ErrorCheckEmail } from '@pages/components/ErrorCheckEmail';
 
+
 export const routes = (
-    <Routes>
+    <Routes>        
+        <Route path={Paths.DEFAULT} element={<Navigate to={Paths.AUTH_lOGIN}/>}/>
         <Route path={Paths.MAIN} element={<MainPage />} />
         <Route path={Paths.AUTH_lOGIN} element={<AuthPage />}>
             <Route index element={<SignIn />} />

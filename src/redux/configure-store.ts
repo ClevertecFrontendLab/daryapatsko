@@ -3,6 +3,7 @@ import { createBrowserHistory } from 'history';
 import { createReduxHistoryContext } from 'redux-first-history';
 import { authApi } from './commonApi';
 import userReducer from './userSlice';
+import loadingReducer from './LoadingSlice';
 
 
 const {
@@ -16,6 +17,7 @@ export const store = configureStore({
       router: routerReducer,
       [authApi.reducerPath]: authApi.reducer,
       user: userReducer,
+      loading: loadingReducer,
     }),
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(routerMiddleware, authApi.middleware),
   });

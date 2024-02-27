@@ -2,8 +2,12 @@ import { Modal } from 'antd'
 import './ErrorCheckEmail.css'
 import { history } from '@redux/configure-store'
 import errorCheckEmail from './../../../assets/registration/errorCheckEmail.svg'
+import {Paths} from './../../../routes/path'
 
 export const ErrorCheckEmail = () => {
+  const onOk = () =>{
+    history.push(`${Paths.AUTH_lOGIN}`, {state: {from: location.pathname}});
+  }
   return (
     <Modal
     open={true}
@@ -12,7 +16,7 @@ export const ErrorCheckEmail = () => {
     >Назад</span>}
     okButtonProps={{ className: 'customButton' }}
     cancelText={false}
-    onOk={() => history.push('/result/check-email')}
+    onOk={onOk}
     width={'539px'}
     centered={true}
 >

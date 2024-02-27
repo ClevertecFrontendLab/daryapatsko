@@ -1,15 +1,20 @@
 import Modal from 'antd/lib/modal'
 import errorUser from './../../../assets/registration/errorUser.svg'
-import { history } from '@redux/configure-store'
+import { RootState, history } from '@redux/configure-store'
+import { Paths } from './../../../routes/path'
+import { useSelector } from 'react-redux'
 
 export const Error = () => {
+  const onOk = () =>{
+    history.push(`${Paths.AUTH_lOGIN}/${Paths.AUTH_REGISTRATION}`, {state: {from: location.pathname}});
+  }
   return (
     <Modal
     open={true}
     closable={false}
     okText={<span data-test-id='registration-retry-button'>Повторить</span>}
     cancelText={false}
-    onOk={() => history.push('auth/registration')}
+    onOk={onOk}
     width={'539px'}
     centered={true}
 >

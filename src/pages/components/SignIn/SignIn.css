@@ -38,6 +38,7 @@
     color: rgba(0, 0, 0, 0.85);
 }
 .login-form-forgot{
+    background-color: transparent;
     font-weight: 400;
     font-size: 16px;
     line-height: 130%;

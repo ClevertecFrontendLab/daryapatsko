@@ -1,28 +1,36 @@
 import './SignUp.css';
 import { Button, Form, Input } from 'antd';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
-
 import { useForm } from 'antd/lib/form/Form';
 import { useAuthRegistationMutation } from '@redux/commonApi';
 import { Paths } from './../../../routes/path';
 import { GooglePlusOutlined } from '@ant-design/icons';
 import { history } from '@redux/configure-store';
+import { useEffect, useState } from 'react';
+import { setUser } from '@redux/userSlice';
+import { useLocation } from 'react-router-dom';
+import { useAppSelector } from '@hooks/typed-react-redux-hooks';
 
 export const SignUp: React.FC = () => {
+    const location = useLocation();
     const [form] = useForm();
     const dispatch = useDispatch<ThunkDispatch<any, object, AnyAction>>();
-    const [authRegistation, { isLoading, isSuccess }] = useAuthRegistationMutation();
+    const [authRegistation, { isLoading }] = useAuthRegistationMutation();
+    const { email } = useAppSelector((state) => state.user)
+    const { password } = useAppSelector((state) => state.user)
 
     const onFinish = async (values: any) => {
         const { email, password } = values;
         await authRegistation({ email, password })
             .unwrap()
+            .then(() =>  history.push(`${Paths.RESULT}/${Paths.SUCCESS}`))
             .catch((err) => {
                 if (err.status === 409) {
                     history.push(`${Paths.RESULT}/${Paths.ERROR_USER}`);
                 } else {
-                    history.push(`${Paths.RESULT}/${Paths.ERROR}`);
+                    dispatch(setUser({ email,password }));
+                    history.push(`${Paths.RESULT}/${Paths.ERROR}`, {state: {from: location.pathname}});
                 }
             });
     };
@@ -31,12 +39,13 @@ export const SignUp: React.FC = () => {
         form.resetFields();
         console.log('Failed:', errorInfo);
     };
-    if (isSuccess) {
-        history.push(`${Paths.RESULT}/${Paths.SUCCESS}`);
-    }
-
+    useEffect(()=>{
+     if(location.state?.state?.from === '/result/error'){
+        onFinish({email, password})
+     }
+    }, [location])
     return (
-        <Form
+            <Form
             name='basic'
             initialValues={{ remember: true }}
             onFinish={onFinish}
@@ -55,7 +64,9 @@ export const SignUp: React.FC = () => {
                     },
                 ]}
             >
-                <Input addonBefore='e-mail' data-test-id='registration-email'/>
+                <Input addonBefore='e-mail' 
+                // value={email} 
+                data-test-id='registration-email'/>
             </Form.Item>
 
             <Form.Item
@@ -69,7 +80,9 @@ export const SignUp: React.FC = () => {
                     },
                 ]}
             >
-                <Input.Password placeholder='Пароль' data-test-id='registration-password'/>
+                <Input.Password placeholder='Пароль' 
+                // value={password} 
+                data-test-id='registration-password'/>
             </Form.Item>
 
             <Form.Item
@@ -102,6 +115,6 @@ export const SignUp: React.FC = () => {
                     Регистрация через Google
                 </Button>
             </div>
-        </Form>
+        </Form>       
     );
 };

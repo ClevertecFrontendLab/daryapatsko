@@ -14,14 +14,18 @@ import ContentMain from '../Content/ContentMain';
 import Footer from '../Footer/Footer';
 import { useWindowSize } from 'usehooks-ts';
 import { history } from '@redux/configure-store';
+import { useDispatch } from 'react-redux';
+import { removeUser } from '@redux/userSlice';
 
 export const MainLayout: React.FC = () => {
+    const dispatch = useDispatch()
     const [collapsed, setCollapsed] = useState(false);
     const windowSize = useWindowSize();
     const widthSide = windowSize.width <= 480 ? '106' : '208';
     const widthSideCollapsed = windowSize.width <= 480 ? '0' : '64';
     const LogoutFunc = () => {
         localStorage.clear();
+        dispatch(removeUser())
         history.push('/auth');
     };
 

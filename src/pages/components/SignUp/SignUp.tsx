@@ -11,16 +11,18 @@ import { useEffect, useState } from 'react';
 import { setUser } from '@redux/userSlice';
 import { useLocation } from 'react-router-dom';
 import { useAppSelector } from '@hooks/typed-react-redux-hooks';
+import { setLoading } from '@redux/LoadingSlice';
 
 export const SignUp: React.FC = () => {
     const location = useLocation();
     const [form] = useForm();
     const dispatch = useDispatch<ThunkDispatch<any, object, AnyAction>>();
-    const [authRegistation, { isLoading }] = useAuthRegistationMutation();
+    const [authRegistation] = useAuthRegistationMutation();
     const { email } = useAppSelector((state) => state.user)
     const { password } = useAppSelector((state) => state.user)
 
     const onFinish = async (values: any) => {
+        dispatch(setLoading())
         const { email, password } = values;
         await authRegistation({ email, password })
             .unwrap()
@@ -32,7 +34,11 @@ export const SignUp: React.FC = () => {
                     dispatch(setUser({ email,password }));
                     history.push(`${Paths.RESULT}/${Paths.ERROR}`, {state: {from: location.pathname}});
                 }
+            })
+            .finally(() => {
+                dispatch(setLoading()); 
             });
+            
     };
 
     const onFinishFailed = (errorInfo: any) => {
@@ -52,8 +58,10 @@ export const SignUp: React.FC = () => {
             onFinishFailed={onFinishFailed}
             autoComplete='off'
             form={form}
+            className='form_signUp'
         >
             <Form.Item
+            style={{marginBottom:'32px'}}
                 id='email-input'
                 name='email'
                 rules={[
@@ -65,7 +73,6 @@ export const SignUp: React.FC = () => {
                 ]}
             >
                 <Input addonBefore='e-mail' 
-                // value={email} 
                 data-test-id='registration-email'/>
             </Form.Item>
 
@@ -81,7 +88,6 @@ export const SignUp: React.FC = () => {
                 ]}
             >
                 <Input.Password placeholder='Пароль' 
-                // value={password} 
                 data-test-id='registration-password'/>
             </Form.Item>
 

@@ -1,7 +1,7 @@
 import './ResultPage.css';
 import { ResultScreen } from '@pages/components/ResultScreen';
 
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 export const ResultPage = () => {
 

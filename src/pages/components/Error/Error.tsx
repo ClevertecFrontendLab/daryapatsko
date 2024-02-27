@@ -1,8 +1,8 @@
 import Modal from 'antd/lib/modal'
 import errorUser from './../../../assets/registration/errorUser.svg'
-import { RootState, history } from '@redux/configure-store'
+import { history } from '@redux/configure-store'
 import { Paths } from './../../../routes/path'
-import { useSelector } from 'react-redux'
+
 
 export const Error = () => {
   const onOk = () =>{

@@ -2,17 +2,19 @@ import Modal from 'antd/lib/modal/Modal';
 import './ConfirmPassword.css';
 import VerificationInput from 'react-verification-input';
 import attentionIcon from './../../../assets/registration/attention.svg';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@redux/configure-store';
 import { useState } from 'react';
 import { useConfirmEmailMutation } from '@redux/commonApi';
 import { history } from '@redux/configure-store';
 import errorIcon from './../../../assets/registration/errorUser.svg'
+import { setLoading } from '@redux/LoadingSlice';
 
 export const ConfirmPassword = () => {
     const [value, setValue] = useState('')
     const [confirmEmail, {isError}] = useConfirmEmailMutation()
     const email = useSelector((state:RootState) => state.user.email)
+    const dispatch = useDispatch();
 
     return (
         <Modal
@@ -38,12 +40,12 @@ export const ConfirmPassword = () => {
                     поле ниже.
                 </p>
                 <VerificationInput
-                data-test-id='verification-input'
                 value={value}
                 onChange={(data) => {
                     setValue(data)
                 }}
                 onComplete={(code:string)=>{
+                    dispatch(setLoading())
                     if(code.length === 6){
                         confirmEmail({email, code})
                         .unwrap()
@@ -53,6 +55,9 @@ export const ConfirmPassword = () => {
                         .catch((err)=> {
                            setValue('')
                         } )
+                        .finally(() => {
+                            dispatch(setLoading()); 
+                        });
                     }
                    
                 }}

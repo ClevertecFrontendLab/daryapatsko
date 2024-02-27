@@ -6,13 +6,17 @@ import { history } from '@redux/configure-store';
 import { Paths } from './../../../routes/path';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setLoading } from '@redux/LoadingSlice';
 
 export const ChangePassword = () => {
-    const [changePassword, { isError }] = useChangePasswordMutation();
+    const dispatch = useDispatch();
+    const [changePassword] = useChangePasswordMutation();
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const location = useLocation();
     const onFinish = async (values: any) => {
+        dispatch(setLoading())
         const { password, confirmPassword } = values;
         await changePassword({ password, confirmPassword })
             .unwrap()
@@ -20,11 +24,14 @@ export const ChangePassword = () => {
                 history.push(`${Paths.RESULT}/${Paths.SUCCESS_CHANGE_PASSWORD}`);
             })
             .catch((err) => {
+                setPassword(password)
+                setConfirmPassword(confirmPassword)
                 history.push(`${Paths.RESULT}/${Paths.ERROR_CHANGE_PASSWORD}`);
+            })
+            .finally(() => {
+                dispatch(setLoading()); 
             });
     };
-    console.log(password);
-    console.log(confirmPassword);
     useEffect(() => {
         if (location.state?.state?.from === '/result/error-change-password'){
             onFinish({password, confirmPassword})
@@ -34,9 +41,7 @@ export const ChangePassword = () => {
         <Modal
             open={true}
             closable={false}
-            // okText={<span  data-test-id='change-submit-button'>Сохранить</span>}
             cancelText={false}
-            // onOk={onFinish}
             width={'539px'}
             centered={true}
             style={{ height: '419px' }}
@@ -65,7 +70,6 @@ export const ChangePassword = () => {
                 >
                     <Input.Password
                         placeholder='Новый пароль'
-                        // onChange={passwordChange}
                         data-test-id='change-password'
                     />
                 </Form.Item>
@@ -91,11 +95,10 @@ export const ChangePassword = () => {
                 >
                     <Input.Password
                         placeholder='Повторите пароль'
-                        // onChange={confirmPasswordChange}
                         data-test-id='change-confirm-password'
                     />
                 </Form.Item>
-                <Button type='primary' htmlType='submit'>
+                <Button type='primary' htmlType='submit' data-test-id='change-submit-button'>
                     Сохранить
                 </Button>
             </Form>

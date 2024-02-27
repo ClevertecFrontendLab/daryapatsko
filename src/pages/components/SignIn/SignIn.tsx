@@ -6,9 +6,8 @@ import { Paths } from './../../../routes/path';
 import { useEffect, useState } from 'react';
 import { GooglePlusOutlined } from '@ant-design/icons';
 import { setUser } from '@redux/userSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { history } from '@redux/configure-store';
-import Loader from '../Loader/Loader';
 import { setLoading } from '@redux/LoadingSlice';
 import { useLocation } from 'react-router-dom';
 
@@ -18,10 +17,10 @@ export const SignIn: React.FC = () => {
     const dispatch = useDispatch();
     const [email, setEmail] = useState('');
     const [isEmailValid, setIsEmailValid] = useState(false);
-    const [auth, { isLoading }] = useAuthLoginMutation();
+    const [auth] = useAuthLoginMutation();
     const [checkEmail] = useCheckEmailMutation();
     const [refreshPage, setRefreshPage] = useState(false)
-
+  
     const emailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const email = e.target.value;
         setEmail(email);
@@ -29,11 +28,12 @@ export const SignIn: React.FC = () => {
     };
     const validateEmail = (email: string) => {
         const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        return pattern.test(email);
+        return email !== '' && pattern.test(email);
     };
 
     const onFinish = async (values: any) => {
         dispatch(setUser({ email: values.email, password: values.password }));
+        dispatch(setLoading())
         auth({ email: values.email, password: values.password })
             .unwrap()
             .then((res) => {
@@ -47,10 +47,17 @@ export const SignIn: React.FC = () => {
                     history.push(`${Paths.RESULT}/${Paths.ERROR_LOGIN}`);
                 }
             })
+            .finally(() => {
+                dispatch(setLoading()); 
+            });
     };
 
     const handleForgotPassword = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        if(email === ''){
+            return 
+        }
         e.preventDefault();
+        dispatch(setLoading())
         dispatch(setUser({ email }));
         checkEmail({ email })
             .unwrap()
@@ -61,6 +68,9 @@ export const SignIn: React.FC = () => {
                 } else {
                     history.push(`${Paths.RESULT}/${Paths.ERROR_CHECK_EMAIL}`);
                 }
+            })
+            .finally(() => {
+                dispatch(setLoading()); 
             });
     };
     useEffect(() => {
@@ -85,13 +95,16 @@ export const SignIn: React.FC = () => {
       }, [refreshPage, location]);
 
     return (
+      <div className='form_signIn'>
         <Form
             name='basic'
             initialValues={{ remember: true }}
             onFinish={onFinish}
             autoComplete='off'
+            className=''
         >
             <Form.Item
+                
                 id='email-input'
                 name='email'
                 rules={[
@@ -125,7 +138,7 @@ export const SignIn: React.FC = () => {
                     <Checkbox data-test-id='login-remember'>Запомнить меня</Checkbox>
                 </Form.Item>
 
-                <button
+                <button type='submit'
                     className='login-form-forgot'
                     data-test-id='login-forgot-button'
                     disabled={isEmailValid}
@@ -145,8 +158,10 @@ export const SignIn: React.FC = () => {
             </Button>
             <Button type='primary' htmlType='submit' className='google-form-button'>
                 <GooglePlusOutlined style={{ marginTop: '4px' }} />
-                Войти через Google
+                <span>Войти через Google</span>
             </Button>
         </Form>
+      </div>
+        
     );
 };

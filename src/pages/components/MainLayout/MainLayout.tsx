@@ -13,41 +13,53 @@ import MenuSide from './Menu/MenuSide';
 import ContentMain from '../Content/ContentMain';
 import Footer from '../Footer/Footer';
 import { useWindowSize } from 'usehooks-ts';
+import { history } from '@redux/configure-store';
+import { useDispatch } from 'react-redux';
+import { removeUser } from '@redux/userSlice';
+import { Paths } from './../../../routes/path';
 
 export const MainLayout: React.FC = () => {
+    const dispatch = useDispatch()
     const [collapsed, setCollapsed] = useState(false);
     const windowSize = useWindowSize();
-    const widthSide = windowSize.width <= 480 ? '106' : '208'
-    const widthSideCollapsed = windowSize.width <= 480 ? '0' : '64'
+    const widthSide = windowSize.width <= 480 ? '106' : '208';
+    const widthSideCollapsed = windowSize.width <= 480 ? '0' : '64';
+    const LogoutFunc = () => {
+        localStorage.clear();
+        dispatch(removeUser())
+        history.push(Paths.AUTH_lOGIN);
+    };
 
     return (
         <Layout>
-            <Sider trigger={null}
-             collapsible 
-             collapsed={collapsed}
-             collapsedWidth={widthSideCollapsed} 
-             width={widthSide} 
-             theme='light'>
+            <Sider
+                trigger={null}
+                collapsible
+                collapsed={collapsed}
+                collapsedWidth={widthSideCollapsed}
+                width={widthSide}
+                theme='light'
+            >
                 <div className='main_container-sider'>
                     <div className={`logo ${collapsed ? 'logo-collapsed' : ''}`}>
-                        {!collapsed && <img src={clever} className="clever" alt='clever' />}
-                        <img src={fit} alt='fit' className="fit" />
+                        {!collapsed && <img src={clever} className='clever' alt='clever' />}
+                        <img src={fit} alt='fit' className='fit' />
                     </div>
-                    <MenuSide collapsed={collapsed}/>
+                    <MenuSide collapsed={collapsed} />
                 </div>
                 <div className='side_footer'>
                     <div className='side_footer-container'>
-                        <a href='#!'>
+                        <button onClick={LogoutFunc}>
                             <img src={exitIcon} alt='exitIcon' className='img-exit' />
                             {!collapsed && <span>Выход</span>}
-                        </a>
+                        </button>
                     </div>
                 </div>
             </Sider>
             <Layout className='site-layout'>
-                <HeaderMain/>
-                <ContentMain collapsed={collapsed} setCollapsed={setCollapsed}/>
-                <Footer collapsed={collapsed}/>
+                <HeaderMain />
+                <ContentMain collapsed={collapsed} setCollapsed={setCollapsed} />
+                <Footer collapsed={collapsed} />
             </Layout>
         </Layout>
     );

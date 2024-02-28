@@ -42,7 +42,9 @@
  .side_footer{
   box-shadow: inset 0px 1px 0px 0px rgb(240, 240, 240);
  }
- .side_footer-container a{
+ .side_footer-container button{
+  background-color: transparent;
+  align-items: center;
    display: flex;
    gap: 26px;
    color: #262626;

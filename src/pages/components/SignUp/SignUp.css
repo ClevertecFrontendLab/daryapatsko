@@ -1,0 +1,28 @@
+.ant-input-affix-wrapper.ant-input-password{
+    height: 40px;
+}
+
+.ant-form-item-explain.ant-form-item-explain-connected{
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 130%;
+    color:  #8c8c8c;
+}
+.btn_box{
+    padding-top: 30px;
+}
+.password-box{
+    margin-bottom: 48px;
+}
+.form_signUp{
+    margin-top: 8px;
+}
+
+@media (max-width: 361px){
+   .form_signUp{
+        margin-top: 0px;
+   }
+    .btn_box{
+        padding-top: 20px;
+    }
+}

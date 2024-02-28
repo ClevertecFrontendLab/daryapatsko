@@ -1,0 +1,101 @@
+.form_signIn{
+    margin-bottom: 112px;
+    }
+   
+.ant-input-group-addon{
+    width: 71px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 130%;
+    text-align: center;
+    color: #262626;  
+}
+#basic_email{
+    height: 40px;
+}
+.ant-input-affix-wrapper.ant-input-password{
+    padding: 0px 12px;
+}
+.ant-form-item{
+    margin-bottom: 30px;
+}
+.ant-form-item-control-input{
+    height: auto;
+}
+.ant-form-item.form_option{
+    padding-top: 15px;
+    margin-bottom: 16px;
+}
+.ant-form-item-control-input-content{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.ant-checkbox + span{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 130%;
+    color: rgba(0, 0, 0, 0.85);
+}
+.login-form-forgot{
+    background-color: transparent;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    color:  #2f54eb;
+}
+.ant-btn-primary{
+    min-height: 40px;
+    width: 100%;
+    font-size: 16px;
+    line-height: 130%;
+    text-align: center;
+    color:  #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ant-btn.ant-btn-primary.google-form-button{
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.02);
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+}
+.google-form-button > span{
+    color: #262626;
+}
+.ant-btn > span{
+    font-weight: 400;
+    display: block;
+}
+.ant-input-group-wrapper-status-error .ant-input-group-addon{
+    color: #262626;
+}
+.login-form-forgot{
+    padding: 0;
+    border: none;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    text-align: center;
+    color:  #2f54eb;
+}
+
+@media (max-width: 361px){
+    .form_signIn{
+        margin-bottom: 98px;
+        }
+   
+    .login-form-forgot{
+        padding: 0 7px;
+        font-size: 14px;
+    }
+    .google-form-button > span:first-of-type{
+       display: none;
+    }
+}

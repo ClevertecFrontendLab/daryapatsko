@@ -1,13 +1,13 @@
 import './SignUp.css';
 import { Button, Form, Input } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
 import { useForm } from 'antd/lib/form/Form';
 import { useAuthRegistationMutation } from '@redux/commonApi';
 import { Paths } from './../../../routes/path';
 import { GooglePlusOutlined } from '@ant-design/icons';
 import { history } from '@redux/configure-store';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { setUser } from '@redux/userSlice';
 import { useLocation } from 'react-router-dom';
 import { useAppSelector } from '@hooks/typed-react-redux-hooks';
@@ -18,40 +18,41 @@ export const SignUp: React.FC = () => {
     const [form] = useForm();
     const dispatch = useDispatch<ThunkDispatch<any, object, AnyAction>>();
     const [authRegistation] = useAuthRegistationMutation();
-    const { email } = useAppSelector((state) => state.user)
-    const { password } = useAppSelector((state) => state.user)
+    const { email } = useAppSelector((state) => state.user);
+    const { password } = useAppSelector((state) => state.user);
 
     const onFinish = async (values: any) => {
-        dispatch(setLoading())
+        dispatch(setLoading());
         const { email, password } = values;
         await authRegistation({ email, password })
             .unwrap()
-            .then(() =>  history.push(`${Paths.RESULT}/${Paths.SUCCESS}`))
+            .then(() => history.push(`${Paths.RESULT}/${Paths.SUCCESS}`))
             .catch((err) => {
                 if (err.status === 409) {
                     history.push(`${Paths.RESULT}/${Paths.ERROR_USER}`);
                 } else {
-                    dispatch(setUser({ email,password }));
-                    history.push(`${Paths.RESULT}/${Paths.ERROR}`, {state: {from: location.pathname}});
+                    dispatch(setUser({ email, password }));
+                    history.push(`${Paths.RESULT}/${Paths.ERROR}`, {
+                        state: { from: location.pathname },
+                    });
                 }
             })
             .finally(() => {
-                dispatch(setLoading()); 
+                dispatch(setLoading());
             });
-            
     };
 
     const onFinishFailed = (errorInfo: any) => {
         form.resetFields();
         console.log('Failed:', errorInfo);
     };
-    useEffect(()=>{
-     if(location.state?.state?.from === '/result/error'){
-        onFinish({email, password})
-     }
-    }, [location])
+    useEffect(() => {
+        if (location.state?.state?.from === '/result/error') {
+            onFinish({ email, password });
+        }
+    }, [location]);
     return (
-            <Form
+        <Form
             name='basic'
             initialValues={{ remember: true }}
             onFinish={onFinish}
@@ -61,7 +62,7 @@ export const SignUp: React.FC = () => {
             className='form_signUp'
         >
             <Form.Item
-            style={{marginBottom:'32px'}}
+                style={{ marginBottom: '32px' }}
                 id='email-input'
                 name='email'
                 rules={[
@@ -72,8 +73,7 @@ export const SignUp: React.FC = () => {
                     },
                 ]}
             >
-                <Input addonBefore='e-mail' 
-                data-test-id='registration-email'/>
+                <Input addonBefore='e-mail' data-test-id='registration-email' />
             </Form.Item>
 
             <Form.Item
@@ -87,8 +87,7 @@ export const SignUp: React.FC = () => {
                     },
                 ]}
             >
-                <Input.Password placeholder='Пароль' 
-                data-test-id='registration-password'/>
+                <Input.Password placeholder='Пароль' data-test-id='registration-password' />
             </Form.Item>
 
             <Form.Item
@@ -110,10 +109,18 @@ export const SignUp: React.FC = () => {
                     }),
                 ]}
             >
-                <Input.Password placeholder='Повторите пароль' data-test-id='registration-confirm-password'/>
+                <Input.Password
+                    placeholder='Повторите пароль'
+                    data-test-id='registration-confirm-password'
+                />
             </Form.Item>
             <div className='btn_box'>
-                <Button type='primary' htmlType='submit' className='login-form-button'  data-test-id='registration-submit-button'>
+                <Button
+                    type='primary'
+                    htmlType='submit'
+                    className='login-form-button'
+                    data-test-id='registration-submit-button'
+                >
                     Войти
                 </Button>
                 <Button type='primary' htmlType='submit' className='google-form-button'>
@@ -121,6 +128,6 @@ export const SignUp: React.FC = () => {
                     Регистрация через Google
                 </Button>
             </div>
-        </Form>       
+        </Form>
     );
 };

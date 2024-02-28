@@ -8,43 +8,50 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setLoading } from '@redux/LoadingSlice';
+import { useWindowSize } from 'usehooks-ts';
 
 export const ChangePassword = () => {
+    const windowSize = useWindowSize();
+    const modalWidth = windowSize.width < 450 ? '328px' : '539px';
+    const inputWidth = windowSize.width < 450 ? '296px' : '368px';
+
     const dispatch = useDispatch();
     const [changePassword] = useChangePasswordMutation();
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const location = useLocation();
+
     const onFinish = async (values: any) => {
-        dispatch(setLoading())
+        dispatch(setLoading());
         const { password, confirmPassword } = values;
         await changePassword({ password, confirmPassword })
             .unwrap()
-            .then((res) => {
+            .then(() => {
                 history.push(`${Paths.RESULT}/${Paths.SUCCESS_CHANGE_PASSWORD}`);
             })
             .catch((err) => {
-                setPassword(password)
-                setConfirmPassword(confirmPassword)
+                setPassword(password);
+                setConfirmPassword(confirmPassword);
                 history.push(`${Paths.RESULT}/${Paths.ERROR_CHANGE_PASSWORD}`);
             })
             .finally(() => {
-                dispatch(setLoading()); 
+                dispatch(setLoading());
             });
     };
+
     useEffect(() => {
-        if (location.state?.state?.from === '/result/error-change-password'){
-            onFinish({password, confirmPassword})
+        if (location.state?.state?.from === '/result/error-change-password') {
+            onFinish({ password, confirmPassword });
         }
-    },[location])
+    }, [location]);
     return (
         <Modal
             open={true}
             closable={false}
+            okButtonProps={{ className: 'changeButton' }}
             cancelText={false}
-            width={'539px'}
+            width={modalWidth}
             centered={true}
-            style={{ height: '419px' }}
         >
             <p className='title_modal title_change-password'>Восстановление аккауанта</p>
             <Form
@@ -53,7 +60,7 @@ export const ChangePassword = () => {
                 initialValues={{ remember: true }}
                 autoComplete='off'
                 style={{
-                    width: '368px',
+                    width: `${inputWidth}`,
                     marginBottom: '30px',
                     textAlign: 'left',
                 }}
@@ -68,10 +75,7 @@ export const ChangePassword = () => {
                         },
                     ]}
                 >
-                    <Input.Password
-                        placeholder='Новый пароль'
-                        data-test-id='change-password'
-                    />
+                    <Input.Password placeholder='Новый пароль' data-test-id='change-password' />
                 </Form.Item>
 
                 <Form.Item
@@ -98,7 +102,12 @@ export const ChangePassword = () => {
                         data-test-id='change-confirm-password'
                     />
                 </Form.Item>
-                <Button type='primary' htmlType='submit' data-test-id='change-submit-button'>
+                <Button
+                    className='saveBtn'
+                    type='primary'
+                    htmlType='submit'
+                    data-test-id='change-submit-button'
+                >
                     Сохранить
                 </Button>
             </Form>

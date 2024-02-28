@@ -2,8 +2,11 @@ import Modal from 'antd/lib/modal';
 import './successModal.css';
 import successIcon from './../../../assets/registration/successIcon.svg';
 import { history } from '@redux/configure-store';
+import { useWindowSize } from 'usehooks-ts';
 
 export const SuccessModal = () => {
+    const windowSize = useWindowSize()
+    const modalWidth = windowSize.width < 450 ? '328px' : '539px'
     return (
         <Modal
             open={true}
@@ -12,10 +15,10 @@ export const SuccessModal = () => {
             >Войти</span>}
             cancelText={false}
             onOk={() => history.push('/auth') }
-            width={'539px'}
+            width={modalWidth}
             centered={true}
         >
-            <img src={successIcon} alt='success' />
+            <img src={successIcon} alt='success' style={{paddingTop: '5px'}} />
             <div className='description_modal description_success' >
                 <p className='title_modal'>Регистрация успешна</p>
                 <p className='text_modal text_modal_success'>

@@ -49,7 +49,7 @@ p{
 .ant-modal-footer .ant-btn + .ant-btn:not(.ant-dropdown-trigger){
     margin: 0 auto;
 }
-@media (max-width: 835px){
+@media (max-width: 360px){
     .ant-modal-centered .ant-modal{
         margin-top: -45px;
         padding: 32px 16px;

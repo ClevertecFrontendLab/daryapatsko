@@ -7,7 +7,8 @@ import { store, history } from '@redux/configure-store';
 
 import 'normalize.css';
 import './index.css';
-import { routes } from './routes/routes';
+
+import  RoutesComponent  from './routes/routes';
 
 const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
@@ -15,7 +16,7 @@ const root = createRoot(domNode);
 root.render(
     <React.StrictMode>
         <Provider store={store}>
-            <HistoryRouter history={history}>{routes}</HistoryRouter>
+            <HistoryRouter history={history}><RoutesComponent/></HistoryRouter>
         </Provider>
     </React.StrictMode>,
 );

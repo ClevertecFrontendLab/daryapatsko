@@ -1,6 +1,12 @@
 .text_check{
     padding: 0 50px;
 }
+
 .ant-btn.ant-btn-primary.customButton{
     max-width: 167px;
+}
+@media (max-width: 360px){
+    .text_check{
+        padding: 0 10px;
+    }
 }

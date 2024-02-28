@@ -2,8 +2,11 @@ import { Modal } from 'antd';
 import { history } from '@redux/configure-store';
 import successIcon from './../../../assets/registration/successIcon.svg';
 import './successChangePassword.css';
+import { useWindowSize } from 'usehooks-ts';
 
 export const SuccessChangePassword = () => {
+    const windowSize = useWindowSize();
+    const modalWidth = windowSize.width < 450 ? '328px' : '539px';
     return (
         <Modal
             open={true}
@@ -11,7 +14,7 @@ export const SuccessChangePassword = () => {
             okText={<span data-test-id='change-entry-button'>Вход</span>}
             cancelText={false}
             onOk={() => history.push('/auth')}
-            width={'539px'}
+            width={modalWidth}
             centered={true}
         >
             <img src={successIcon} alt='success' />

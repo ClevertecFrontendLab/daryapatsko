@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import { history } from '@redux/configure-store';
 import { setLoading } from '@redux/LoadingSlice';
 import { useLocation } from 'react-router-dom';
-import { validateEmail, STATUS_404 } from '../../../constants/constAuth';
+import { validateEmail, STATUS_404, patternEmail, patternPassword } from '@constants/constAuth';
 
 export const SignIn: React.FC = () => {
     const location = useLocation();
@@ -103,7 +103,7 @@ export const SignIn: React.FC = () => {
                     rules={[
                         { required: true, message: '' },
                         {
-                            pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                            pattern: patternEmail,
                             message: '',
                         },
                     ]}
@@ -119,7 +119,7 @@ export const SignIn: React.FC = () => {
                             message: 'Пароль не менее 8 символов, с заглавной буквы и цифрой',
                         },
                         {
-                            pattern: /^(?=.*[A-Z])(?=.*\d).{8,}$/,
+                            pattern: patternPassword,
                             message: '',
                         },
                     ]}

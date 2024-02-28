@@ -12,7 +12,7 @@ import { setUser } from '@redux/userSlice';
 import { useLocation } from 'react-router-dom';
 import { useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { setLoading } from '@redux/LoadingSlice';
-import { STATUS_409 } from '@constants/constAuth';
+import { STATUS_409,patternEmail,patternPassword } from '@constants/constAuth';
 
 export const SignUp: React.FC = () => {
     const location = useLocation();
@@ -71,7 +71,7 @@ export const SignUp: React.FC = () => {
                 rules={[
                     { required: true, message: '' },
                     {
-                        pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                        pattern: patternEmail,
                         message: '',
                     },
                 ]}
@@ -86,7 +86,7 @@ export const SignUp: React.FC = () => {
                 rules={[
                     { required: true },
                     {
-                        pattern: /^(?=.*[A-Z])(?=.*\d).{8,}$/,
+                        pattern: patternPassword,
                     },
                 ]}
             >

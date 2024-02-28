@@ -12,6 +12,7 @@ import { setUser } from '@redux/userSlice';
 import { useLocation } from 'react-router-dom';
 import { useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { setLoading } from '@redux/LoadingSlice';
+import { STATUS_409 } from '@constants/constAuth';
 
 export const SignUp: React.FC = () => {
     const location = useLocation();
@@ -28,7 +29,7 @@ export const SignUp: React.FC = () => {
             .unwrap()
             .then(() => history.push(`${Paths.RESULT}/${Paths.SUCCESS}`))
             .catch((err) => {
-                if (err.status === 409) {
+                if (err.status === STATUS_409) {
                     history.push(`${Paths.RESULT}/${Paths.ERROR_USER}`);
                 } else {
                     dispatch(setUser({ email, password }));
@@ -46,11 +47,13 @@ export const SignUp: React.FC = () => {
         form.resetFields();
         console.log('Failed:', errorInfo);
     };
+
     useEffect(() => {
         if (location.state?.state?.from === '/result/error') {
             onFinish({ email, password });
         }
     }, [location]);
+    
     return (
         <Form
             name='basic'

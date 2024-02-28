@@ -7,8 +7,7 @@ export const AuthPage: React.FC = () => {
     return (
         <div className='wrapper'>
             <div className='container'>
-                    <div className='form_box' 
-                    >
+                    <div className='form_box'>
                         <img src={fullLogo} alt='logo' />
                         <TabsItems />
                     </div>

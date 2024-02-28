@@ -3,6 +3,7 @@ import { history } from '@redux/configure-store';
 import successIcon from './../../../assets/registration/successIcon.svg';
 import './successChangePassword.css';
 import { useWindowSize } from 'usehooks-ts';
+import { Paths } from './../../../routes/path'
 
 export const SuccessChangePassword = () => {
     const windowSize = useWindowSize();
@@ -13,7 +14,7 @@ export const SuccessChangePassword = () => {
             closable={false}
             okText={<span data-test-id='change-entry-button'>Вход</span>}
             cancelText={false}
-            onOk={() => history.push('/auth')}
+            onOk={() => history.push(Paths.AUTH_lOGIN)}
             width={modalWidth}
             centered={true}
         >

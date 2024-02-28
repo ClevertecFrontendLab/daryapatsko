@@ -3,6 +3,7 @@ import './ErrorCheck.css';
 import errorUser from './../../../assets/registration/errorUser.svg';
 import { history } from '@redux/configure-store';
 import { useWindowSize } from 'usehooks-ts';
+import { Paths } from './../../../routes/path';
 
 export const ErrorCheck = () => {
     const windowSize = useWindowSize();
@@ -19,7 +20,7 @@ export const ErrorCheck = () => {
             }
             cancelText={false}
             okButtonProps={{ className: 'customButton' }}
-            onOk={() => history.push('/auth')}
+            onOk={() => history.push(Paths.AUTH_lOGIN)}
             width={modalWidth}
             centered={true}
             style={{ padding: '64px 32px' }}

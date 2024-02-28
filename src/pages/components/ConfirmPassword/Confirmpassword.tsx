@@ -9,23 +9,26 @@ import { useConfirmEmailMutation } from '@redux/commonApi';
 import { history } from '@redux/configure-store';
 import errorIcon from './../../../assets/registration/errorUser.svg';
 import { setLoading } from '@redux/LoadingSlice';
+import { useWindowSize } from 'usehooks-ts';
+import { Paths } from './../../../routes/path';
 
 export const ConfirmPassword = () => {
     const [value, setValue] = useState('');
     const [confirmEmail, { isError }] = useConfirmEmailMutation();
     const email = useSelector((state: RootState) => state.user.email);
     const dispatch = useDispatch();
+    const windowSize = useWindowSize();
+    const modalWidth = windowSize.width < 450 ? '328px' : '539px';
 
     return (
         <Modal
             open={true}
             closable={false}
             okButtonProps={{ className: 'btnConfirm' }}
-            width={'539px'}
+            width={modalWidth}
             centered={true}
             style={{
                 marginTop: '90px',
-                // maxHeight: '428px',
             }}
         >
             {isError ? (
@@ -54,7 +57,7 @@ export const ConfirmPassword = () => {
                             confirmEmail({ email, code })
                                 .unwrap()
                                 .then((res) => {
-                                    history.push('/auth/change-password');
+                                    history.push(`${Paths.AUTH_lOGIN}/${Paths.AUTH_CHANGE_PASSWORD}`);
                                 })
                                 .catch((err) => {
                                     setValue('');

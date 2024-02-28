@@ -3,6 +3,7 @@ import './errorModal.css';
 import errorIcon from '../../../assets/registration/error.svg';
 import { history } from '@redux/configure-store';
 import { useWindowSize } from 'usehooks-ts';
+import { Paths } from './../../../routes/path';
 
 const ErrorModal = () => {
     const windowSize = useWindowSize();
@@ -13,7 +14,7 @@ const ErrorModal = () => {
             closable={false}
             okText={<span data-test-id='login-retry-button'>Повторить</span>}
             cancelText={false}
-            onOk={() => history.push('/auth')}
+            onOk={() => history.push(Paths.AUTH_lOGIN)}
             width={modalWidth}
             centered={true}
         >

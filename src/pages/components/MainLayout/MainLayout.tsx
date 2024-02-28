@@ -16,6 +16,7 @@ import { useWindowSize } from 'usehooks-ts';
 import { history } from '@redux/configure-store';
 import { useDispatch } from 'react-redux';
 import { removeUser } from '@redux/userSlice';
+import { Paths } from './../../../routes/path';
 
 export const MainLayout: React.FC = () => {
     const dispatch = useDispatch()
@@ -26,7 +27,7 @@ export const MainLayout: React.FC = () => {
     const LogoutFunc = () => {
         localStorage.clear();
         dispatch(removeUser())
-        history.push('/auth');
+        history.push(Paths.AUTH_lOGIN);
     };
 
     return (

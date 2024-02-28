@@ -10,10 +10,10 @@ import { useDispatch } from 'react-redux';
 import { history } from '@redux/configure-store';
 import { setLoading } from '@redux/LoadingSlice';
 import { useLocation } from 'react-router-dom';
+import { validateEmail, STATUS_404 } from '../../../constants/constAuth';
 
 export const SignIn: React.FC = () => {
     const location = useLocation();
-    // const token = localStorage.getItem('token');
     const dispatch = useDispatch();
     const [email, setEmail] = useState('');
     const [isEmailValid, setIsEmailValid] = useState(false);
@@ -26,10 +26,7 @@ export const SignIn: React.FC = () => {
         setEmail(email);
         setIsEmailValid(!validateEmail(email));
     };
-    const validateEmail = (email: string) => {
-        const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        return email !== '' && pattern.test(email);
-    };
+
 
     const onFinish = async (values: any) => {
         dispatch(setUser({ email: values.email, password: values.password }));
@@ -63,7 +60,7 @@ export const SignIn: React.FC = () => {
             .unwrap()
             .then(() => history.push(`${Paths.AUTH_lOGIN}/${Paths.AUTH_CONFIRM}`))
             .catch((err) => {
-                if (err.status === 404 && err.data.message === 'Email не найден') {
+                if (err.status === STATUS_404 && err.data.message === 'Email не найден') {
                     history.push(`${Paths.RESULT}/${Paths.ERROR_CHECK}`);
                 } else {
                     history.push(`${Paths.RESULT}/${Paths.ERROR_CHECK_EMAIL}`);
@@ -77,15 +74,12 @@ export const SignIn: React.FC = () => {
         if (refreshPage) {
             window.location.reload();
         }
-        // if (token) {
-        //     history.push(Paths.MAIN);
-        // }
         if (location.state?.state?.from === '/result/error-check-email') {
             checkEmail({ email })
                 .unwrap()
                 .then(() => history.push(`${Paths.AUTH_lOGIN}/${Paths.AUTH_CONFIRM}`))
                 .catch((err) => {
-                    if (err.status === 404 && err.data.message === 'Email не найден') {
+                    if (err.status === STATUS_404 && err.data.message === 'Email не найден') {
                         history.push(`${Paths.RESULT}/${Paths.ERROR_CHECK}`);
                     } else {
                         history.push(`${Paths.RESULT}/${Paths.ERROR_CHECK_EMAIL}`);

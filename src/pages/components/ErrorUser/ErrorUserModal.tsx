@@ -3,6 +3,7 @@ import errorUser from './../../../assets/registration/errorUser.svg';
 import Modal from 'antd/lib/modal';
 import { history } from '@redux/configure-store';
 import { useWindowSize } from 'usehooks-ts';
+import {Paths} from './../../../routes/path'
 
 export const ErrorUser = () => {
     const windowSize = useWindowSize();
@@ -13,7 +14,7 @@ export const ErrorUser = () => {
             closable={false}
             okText={<span data-test-id='registration-back-button'>Назад к регистрации</span>}
             cancelText={false}
-            onOk={() => history.push('/auth/registration')}
+            onOk={() => history.push(`${Paths.AUTH_lOGIN}/${Paths.AUTH_REGISTRATION}`)}
             width={modalWidth}
             centered={true}
         >

@@ -3,6 +3,7 @@ import './successModal.css';
 import successIcon from './../../../assets/registration/successIcon.svg';
 import { history } from '@redux/configure-store';
 import { useWindowSize } from 'usehooks-ts';
+import {Paths} from './../../../routes/path'
 
 export const SuccessModal = () => {
     const windowSize = useWindowSize()
@@ -14,7 +15,7 @@ export const SuccessModal = () => {
             okText={<span data-test-id='registration-enter-button'
             >Войти</span>}
             cancelText={false}
-            onOk={() => history.push('/auth') }
+            onOk={() => history.push(Paths.AUTH_lOGIN) }
             width={modalWidth}
             centered={true}
         >

@@ -44,6 +44,7 @@ export const ChangePassword = () => {
             onFinish({ password, confirmPassword });
         }
     }, [location]);
+    
     return (
         <Modal
             open={true}

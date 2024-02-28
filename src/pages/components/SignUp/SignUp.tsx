@@ -12,7 +12,11 @@ import { setUser } from '@redux/userSlice';
 import { useLocation } from 'react-router-dom';
 import { useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { setLoading } from '@redux/LoadingSlice';
-import { STATUS_409,patternEmail,patternPassword } from '@constants/constAuth';
+import {
+    STATUS_409,
+    VALID_RULES_EMAIL,
+    VALID_RULES_PASSWORD,
+} from '@constants/constAuth';
 
 export const SignUp: React.FC = () => {
     const location = useLocation();
@@ -49,11 +53,11 @@ export const SignUp: React.FC = () => {
     };
 
     useEffect(() => {
-        if (location.state?.state?.from === '/result/error') {
+        if (location.state?.state?.from === `${Paths.RESULT}/${Paths.ERROR}`) {
             onFinish({ email, password });
         }
     }, [location]);
-    
+
     return (
         <Form
             name='basic'
@@ -68,13 +72,7 @@ export const SignUp: React.FC = () => {
                 style={{ marginBottom: '32px' }}
                 id='email-input'
                 name='email'
-                rules={[
-                    { required: true, message: '' },
-                    {
-                        pattern: patternEmail,
-                        message: '',
-                    },
-                ]}
+                rules={[VALID_RULES_EMAIL]}
             >
                 <Input addonBefore='e-mail' data-test-id='registration-email' />
             </Form.Item>
@@ -83,12 +81,7 @@ export const SignUp: React.FC = () => {
                 className='password-box'
                 name='password'
                 help='Пароль не менее 8 символов, с заглавной буквы и цифрой'
-                rules={[
-                    { required: true },
-                    {
-                        pattern: patternPassword,
-                    },
-                ]}
+                rules={[VALID_RULES_PASSWORD]}
             >
                 <Input.Password placeholder='Пароль' data-test-id='registration-password' />
             </Form.Item>
@@ -98,10 +91,6 @@ export const SignUp: React.FC = () => {
                 dependencies={['password']}
                 hasFeedback
                 rules={[
-                    {
-                        required: true,
-                        message: '',
-                    },
                     ({ getFieldValue }) => ({
                         validator(_, value) {
                             if (!value || getFieldValue('password') === value) {

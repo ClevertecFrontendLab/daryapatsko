@@ -57,7 +57,9 @@ export const ConfirmPassword = () => {
                             confirmEmail({ email, code })
                                 .unwrap()
                                 .then((res) => {
-                                    history.push(`${Paths.AUTH_lOGIN}/${Paths.AUTH_CHANGE_PASSWORD}`);
+                                    history.push(
+                                        `${Paths.AUTH_lOGIN}/${Paths.AUTH_CHANGE_PASSWORD}`,
+                                    );
                                 })
                                 .catch((err) => {
                                     setValue('');

@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setLoading } from '@redux/LoadingSlice';
 import { useWindowSize } from 'usehooks-ts';
+import { VALID_RULES_PASSWORD } from '@constants/constAuth';
 
 export const ChangePassword = () => {
     const windowSize = useWindowSize();
@@ -40,11 +41,11 @@ export const ChangePassword = () => {
     };
 
     useEffect(() => {
-        if (location.state?.state?.from === '/result/error-change-password') {
+        if (location.state?.state?.from === `${Paths.RESULT}/${Paths.ERROR_CHANGE_PASSWORD}`) {
             onFinish({ password, confirmPassword });
         }
     }, [location]);
-    
+
     return (
         <Modal
             open={true}
@@ -69,12 +70,7 @@ export const ChangePassword = () => {
                 <Form.Item
                     name='password'
                     help='Пароль не менее 8 символов, с заглавной буквы и цифрой'
-                    rules={[
-                        { required: true },
-                        {
-                            pattern: /^(?=.*[A-Z])(?=.*\d).{8,}$/,
-                        },
-                    ]}
+                    rules={[VALID_RULES_PASSWORD]}
                 >
                     <Input.Password placeholder='Новый пароль' data-test-id='change-password' />
                 </Form.Item>
@@ -84,10 +80,6 @@ export const ChangePassword = () => {
                     dependencies={['password']}
                     hasFeedback
                     rules={[
-                        {
-                            required: true,
-                            message: '',
-                        },
                         ({ getFieldValue }) => ({
                             validator(_, value) {
                                 if (!value || getFieldValue('password') === value) {

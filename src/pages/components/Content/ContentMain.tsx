@@ -2,17 +2,16 @@ import React, { FC } from 'react';
 import './content.css';
 import { HeartTwoTone, CalendarTwoTone, IdcardTwoTone } from '@ant-design/icons';
 import { Content } from 'antd/lib/layout/layout';
-import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
-import { useWindowSize } from 'usehooks-ts';
+import Footer from '../Footer/Footer';
 
 interface IContent {
     collapsed: boolean;
-    setCollapsed: (collapsed: boolean) => void;
+    setCollapsed?: (collapsed: boolean) => void;
 }
-const ContentMain: FC<IContent> = ({ collapsed, setCollapsed }) => {
-    const windowSize = useWindowSize();
-    const dataSize = windowSize.width <= 768 ? 'sider-switch-mobile' : 'sider-switch'
+const ContentMain: FC<IContent> = ({ collapsed }) => {
+    
     return (
+        <>
         <Content className='site-layout-content'>
             <div className='main-text_box'>
                 С CleverFit ты сможешь:
@@ -57,11 +56,11 @@ const ContentMain: FC<IContent> = ({ collapsed, setCollapsed }) => {
                     </div>
                 </div>
             </div>
-            <div className={`clip-path-container ${collapsed ? "" : 'open'}`} data-test-id={dataSize}
-                onClick={() => setCollapsed(!collapsed)} >
-               {collapsed ? <MenuUnfoldOutlined style={{color: '#8C8C8C' }}/> : <MenuFoldOutlined style={{color: '#8C8C8C' }}/>}
-            </div>
+            
         </Content>
+        <Footer collapsed={collapsed} />
+        </>
+        
     );
 };
 

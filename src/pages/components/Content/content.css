@@ -78,22 +78,7 @@ text-wrap: wrap;
     text-align: center;
     color: #2f54eb;
 }
-.clip-path-container{
-    clip-path: polygon(0 0, 100% 20%, 100% 76%, 0% 100%);
-    padding: 10px 0;
-    width: 20px;
-    height: 66px;
-    background-color: #fff;
-    position: absolute;
-    top: 50%;
-    left: 9px;
-    transform: translate(-50%,-50%);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
-}
 
 @media screen and (max-width:834px){
     .card-text{
@@ -125,18 +110,5 @@ text-wrap: wrap;
     .card-text{
         text-align: center;
     }
-    .clip-path-container{
-        top: 24px;
-        left: 10px;
-    }
-    .clip-path-container,
-    .clip-path-container.open{
-        transform: translate(-50%,0);
-    }
-    .clip-path-container.open{
-       
-       left: 112px;
-       top: 24px;
-       z-index: 6;
-    }
+    
 }

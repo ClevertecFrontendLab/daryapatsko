@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import 'antd/dist/antd.css';
 import './MainLayout.css';
 import { Layout } from 'antd';
@@ -6,27 +6,30 @@ const { Sider } = Layout;
 import clever from './../../../assets/Clever.svg';
 import fit from './../../../assets/fit.svg';
 import exitIcon from './../../../assets/exitIcon.svg';
-import HeaderMain from './../Header/HeaderMain';
-
 import './MainLayout.css';
 import MenuSide from './Menu/MenuSide';
-import ContentMain from '../Content/ContentMain';
-import Footer from '../Footer/Footer';
 import { useWindowSize } from 'usehooks-ts';
 import { history } from '@redux/configure-store';
 import { useDispatch } from 'react-redux';
 import { removeUser } from '@redux/userSlice';
 import { Paths } from './../../../routes/path';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons/lib/icons';
 
-export const MainLayout: React.FC = () => {
-    const dispatch = useDispatch()
+
+type IMainLayout={
+    children : ReactNode,
+    header: ReactNode,
+}
+export const MainLayout: React.FC<IMainLayout> = ({children, header}) => {
+    const dispatch = useDispatch();
     const [collapsed, setCollapsed] = useState(false);
     const windowSize = useWindowSize();
     const widthSide = windowSize.width <= 480 ? '106' : '208';
     const widthSideCollapsed = windowSize.width <= 480 ? '0' : '64';
+    const dataSize = windowSize.width <= 768 ? 'sider-switch-mobile' : 'sider-switch'
     const LogoutFunc = () => {
         localStorage.clear();
-        dispatch(removeUser())
+        dispatch(removeUser());
         history.push(Paths.AUTH_lOGIN);
     };
 
@@ -57,9 +60,19 @@ export const MainLayout: React.FC = () => {
                 </div>
             </Sider>
             <Layout className='site-layout'>
-                <HeaderMain />
-                <ContentMain collapsed={collapsed} setCollapsed={setCollapsed} />
-                <Footer collapsed={collapsed} />
+                {header}
+                {children}
+                <div
+                    className={`clip-path-container ${collapsed ? '' : 'open'}`}
+                    data-test-id={dataSize}
+                    onClick={() => setCollapsed(!collapsed)}
+                >
+                    {collapsed ? (
+                        <MenuUnfoldOutlined style={{ color: '#8C8C8C' }} />
+                    ) : (
+                        <MenuFoldOutlined style={{ color: '#8C8C8C' }} />
+                    )}
+                </div>
             </Layout>
         </Layout>
     );

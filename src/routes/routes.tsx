@@ -19,6 +19,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@redux/configure-store';
 import { useEffect } from 'react';
 import Loader from '@pages/components/Loader/Loader';
+import FeedBackPage from '@pages/FeedBackPage/FeedBackPage';
 
 const RoutesComponent = () => {
     const navigate = useNavigate();
@@ -26,16 +27,16 @@ const RoutesComponent = () => {
     const token = localStorage.getItem('token');
     const sessionToken = sessionStorage.getItem('token');
     const isLoading = useSelector((state: RootState) => state.loading.isLoading);
-    useEffect(() => {
-        if (token || sessionToken) {
-            const isResultPage = location?.pathname.startsWith('/result');
-            if (isResultPage) {
-                navigate(Paths.AUTH_lOGIN);
-            } else {
-                navigate(Paths.MAIN);
-            }
-        }
-    }, [token, navigate]);
+    // useEffect(() => {
+    //     if (token || sessionToken) {
+    //         const isResultPage = location?.pathname.startsWith('/result');
+    //         if (isResultPage) {
+    //             navigate(Paths.AUTH_lOGIN);
+    //         } else {
+    //             navigate(Paths.MAIN);
+    //         }
+    //     }
+    // }, [token, navigate]);
 
     return (
         <>
@@ -43,6 +44,7 @@ const RoutesComponent = () => {
             <Routes>
                 <Route path={Paths.DEFAULT} element={<Navigate to={Paths.AUTH_lOGIN} />} />
                 <Route path={Paths.MAIN} element={<MainPage />} />
+                <Route path={Paths.FEEDBACK} element={<FeedBackPage />} />
                 <Route path={Paths.AUTH_lOGIN} element={<AuthPage />}>
                     <Route index element={<SignIn />} />
                     <Route path={Paths.AUTH_REGISTRATION} element={<SignUp />} />

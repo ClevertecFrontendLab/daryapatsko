@@ -1,0 +1,48 @@
+.review_container{
+    padding: 16px;
+    background-color: #fff;
+}
+.review_box{
+    display: flex;
+    gap: 12px;
+}
+.review_profileInfo{
+    max-width: 174px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.avatar_box{
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.review_profileName{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    color: #262626;
+}
+.review_descriptionInfo{
+    display: flex;
+    align-items: center;
+}
+.review_date{
+    padding-left: 16px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 130%;
+    color:  #bfbfbf;
+}
+.review_text{
+    padding-top: 12px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 130%;
+    color: #8c8c8c;
+}

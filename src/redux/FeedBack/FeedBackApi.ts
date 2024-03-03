@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { FeedBackT } from './../types/types';
+import { FeedBackT } from '../../types/types';
 
 const baseURL = 'https://marathon-api.clevertec.ru';
 
@@ -18,10 +18,18 @@ export const feedBackApi = createApi({
     endpoints: (builder) => ({
         getFeedBack: builder.query<FeedBackT[], void>({
             query: () => 'feedback',
-        })
-               
         }),
+        postReview: builder.mutation({
+            query: (body: {rating:number, message: string}) =>({
+                url:'feedback',
+                method: 'POST',
+                body, 
+                credentials: 'include'
+            })
+        })  
+        }),
+       
         
 });
 
-export const { useGetFeedBackQuery } = feedBackApi
+export const { useGetFeedBackQuery, usePostReviewMutation } = feedBackApi

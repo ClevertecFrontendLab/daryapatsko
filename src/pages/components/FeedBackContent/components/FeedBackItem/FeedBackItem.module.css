@@ -1,6 +1,10 @@
 .review_container{
     padding: 16px;
     background-color: #fff;
+    max-width: 100%;
+    border-radius: 2px;
+    min-height: 128px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
 }
 .review_box{
     display: flex;
@@ -23,6 +27,8 @@
     justify-content: center;
 }
 .review_profileName{
+    padding: 0 30px;
+    text-align: center;
     font-weight: 400;
     font-size: 16px;
     line-height: 130%;

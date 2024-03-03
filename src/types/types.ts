@@ -6,3 +6,8 @@ export type FeedBackT = {
     "rating": number,
     "createdAt": string,
 }
+
+export type reviewItem = {
+    'message': string,
+    'rating': number
+}

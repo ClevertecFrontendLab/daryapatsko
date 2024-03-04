@@ -8,7 +8,7 @@ export const feedBackApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: baseURL,
         prepareHeaders(headers) {
-            const token = localStorage.getItem('token');
+            const token = localStorage.getItem('token') || sessionStorage.getItem('token');
             if (token) {
                 headers.set('Authorization', `Bearer ${token}`);
             }

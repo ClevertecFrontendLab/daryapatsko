@@ -18,4 +18,6 @@ export const VALID_RULES_PASSWORD = {
     message: 'Пароль не менее 8 символов, с заглавной буквы и цифрой',
 };
 
+export const baseURL = 'https://marathon-api.clevertec.ru';
+
 

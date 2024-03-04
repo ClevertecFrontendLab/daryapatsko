@@ -1,7 +1,7 @@
 import './Header.css';
 import { Header } from 'antd/lib/layout/layout';
 import {SettingOutlined} from '@ant-design/icons';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Paths } from './../../../routes/path';
 
 const HeaderMain = () => {

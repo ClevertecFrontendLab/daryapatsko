@@ -30,7 +30,7 @@ export const MainLayout: React.FC<IMainLayout> = ({children, header}) => {
     const LogoutFunc = () => {
         localStorage.clear();
         dispatch(removeUser());
-        history.push(Paths.AUTH_lOGIN);
+        history.push(Paths.AUTH_LOGIN);
     };
 
     return (

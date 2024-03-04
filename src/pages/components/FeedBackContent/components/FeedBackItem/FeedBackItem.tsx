@@ -30,7 +30,7 @@ export const FeedBackItem: FC<FeedBackItemProps> = ({ item }: FeedBackItemProps)
                 </div>
                 <div className={style.review_description}>
                     <div className={style.review_descriptionInfo}>
-                        <Rate value={rating} style={{ fontSize: '14px', color: '#FAAD14FF' }} />
+                        <Rate value={rating} disabled style={{ fontSize: '14px', color: '#FAAD14FF' }} />
                         <p className={style.review_date}>{formatDate}</p>
                     </div>
                     <p className={style.review_text}>{message}</p>

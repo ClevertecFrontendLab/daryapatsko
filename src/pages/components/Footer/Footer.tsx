@@ -9,7 +9,7 @@ import { Paths } from './../../../routes/path';
 const Footer = ({collapsed} : {collapsed:boolean}) => {
     return (
         <div className={`footer-content ${collapsed ? "close" : 'open'}`}>
-            <Button type='link' onClick={()=>history.push(Paths.FEEDBACK)}>
+            <Button type='link' onClick={()=>history.push(Paths.FEEDBACK)} data-test-id='see-reviews'>
                 Смотреть отзывы
             </Button>
             <div className='footer-content-box'>

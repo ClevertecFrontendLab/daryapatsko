@@ -21,6 +21,7 @@
 .avatar_box{
     width: 42px;
     height: 42px;
+    background-color:  #f5f5f5;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -28,7 +29,7 @@
 }
 .review_profileName{
     padding: 0 30px;
-    text-align: center;
+        text-align: center;
     font-weight: 400;
     font-size: 16px;
     line-height: 130%;
@@ -51,4 +52,18 @@
     font-size: 14px;
     line-height: 130%;
     color: #8c8c8c;
+    word-break: break-word;
+}
+
+@media screen and (max-width:380px){
+    .review_container{
+        min-height: auto;
+    }
+    .review_box{
+        flex-direction: column;
+    }
+    .review_profileInfo{
+        flex-direction: row;
+    }
+
 }

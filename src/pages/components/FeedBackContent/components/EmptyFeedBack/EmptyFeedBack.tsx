@@ -1,10 +1,13 @@
-import React from 'react';
+import { useState } from 'react';
 import s from './EmptyFeedBack.module.css';
 import { Button } from 'antd';
+import { FeedBackForm } from '../FeedBackForm';
 
 export const EmptyFeedBack = () => {
+    const [openModal, setOpenModal] = useState(false);
     return (
-        <div className={s.emptyFeed_container}>
+        <>
+         <div className={s.emptyFeed_container}>
             <div className={s.emptyFeed_content}>
                 <div className={s.emptyFeed_box}>
                     <h3 className={s.emptyFeed_title}>Оставьте свой отзыв первым</h3>
@@ -16,13 +19,21 @@ export const EmptyFeedBack = () => {
                 </div>
 
                 <Button
+                onClick={() => {
+                    setOpenModal(!openModal);
+                }}
                     type='primary'
                     size='small'
                     style={{ marginTop: '20px', maxWidth: '142px', fontSize: '14px' }}
+                    data-test-id='write-review'
+
                 >
                     Написать отзыв
                 </Button>
             </div>
         </div>
+         {openModal && <FeedBackForm openModal={openModal} />}
+        </>
+       
     );
 };

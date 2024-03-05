@@ -12,17 +12,7 @@ const PrivateRoute = () => {
   if(tokenGoogle && remember){
     localStorage.setItem('token', tokenGoogle)
   }
-  useEffect(() => {
-    const clearSessionStorage = () => {
-      sessionStorage.clear();
-    };
-
-    window.addEventListener('beforeunload', clearSessionStorage);
-
-    return () => {
-      window.removeEventListener('beforeunload', clearSessionStorage);
-    };
-  }, []);
+ 
   return (
     token ? <Outlet /> : <Navigate to={Paths.AUTH_LOGIN} />
   )

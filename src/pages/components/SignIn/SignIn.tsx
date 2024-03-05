@@ -9,7 +9,7 @@ import { setRemember, setUser } from '@redux/userSlice';
 import { useDispatch } from 'react-redux';
 import { history } from '@redux/configure-store';
 import { setLoading } from '@redux/LoadingSlice';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import {
     validateEmail,
     STATUS_404,

@@ -1,6 +1,6 @@
 import { Button, Modal, Rate } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import style from './FeedBackForm.module.css';
 import './feedBackForm.css';
 import { StarTwoTone } from '@ant-design/icons';
@@ -18,7 +18,7 @@ export const FeedBackForm = ({ openModal }: any) => {
     const btnWidth = windowSize.width < 450 ? '144px' : '180px';
     const [postReview] = usePostReviewMutation();
     const [isOpen, setIsOpen] = useState(openModal);
-      const [modalSuccess, setModalSuccess] = useState(false);
+    const [modalSuccess, setModalSuccess] = useState(false);
     const [modalError, setModalError] = useState(false);
     const [disabled, setDisabled] = useState(false);
     const [rating, setRating] = useState(0);
@@ -43,8 +43,9 @@ export const FeedBackForm = ({ openModal }: any) => {
             .finally(() => {
                 dispatch(setLoading());
             });
+        dispatch(setRefetch())
     };
-
+ 
     const closeModal = () => {
         setIsOpen(!isOpen);
     };
@@ -107,9 +108,8 @@ export const FeedBackForm = ({ openModal }: any) => {
                 <p style={{fontSize:'24px', padding:'24px 0'}} >Отзыв успешно опубликован</p>
                 <Button
                         type='primary'
-                        htmlType='submit'
+                        htmlType='button'
                         onClick={() => {
-                            dispatch(setRefetch())
                             setModalSuccess(!modalSuccess)}
                         }
                         style={{ width: '180px' }}

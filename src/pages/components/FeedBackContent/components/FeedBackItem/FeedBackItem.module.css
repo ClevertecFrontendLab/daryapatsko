@@ -21,11 +21,16 @@
 .avatar_box{
     width: 42px;
     height: 42px;
-    background-color:  #f5f5f5;
     border-radius: 50%;
+    background-color:  transparent;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.avatar_box img{
+    border-radius: 50%;
+    max-width: 42px;
+    max-height: 42px;
 }
 .review_profileName{
     padding: 0 30px;

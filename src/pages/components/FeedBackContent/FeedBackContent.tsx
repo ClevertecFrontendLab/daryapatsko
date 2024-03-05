@@ -10,6 +10,8 @@ import { Paths } from './../../../routes/path';
 import { FeedBackForm } from './components/FeedBackForm';
 import errorIcon from './../../../assets/registration/errorCheckEmail.svg';
 import { useAppSelector } from '@hooks/typed-react-redux-hooks';
+import { useDispatch } from 'react-redux';
+import { setRefetch } from '@redux/FeedBack/FeedBackSlice';
 
 export const FeedBackContent = () => {
     const { data, error, refetch } = useGetFeedBackQuery();
@@ -17,24 +19,25 @@ export const FeedBackContent = () => {
     const [openModal, setOpenModal] = useState(false);
     const [errorModal, setErrorModal] = useState(false);
     const { refetchData } = useAppSelector((state) => state.feedback);
-    console.log(error)
+    const dispatch = useDispatch()
+   
     useEffect(() => {
         
         if (refetchData) {
           refetch();
+          dispatch(setRefetch())
         }
-      }, [refetchData]);
-
-      useEffect(() => {
         if (error) {
-          if ('status' in error && error.status === STATUS_403) {
-            history.push(Paths.AUTH_LOGIN);
-            localStorage.clear();
-          } else {
-            setErrorModal(true);
+            if ('status' in error && error.status === STATUS_403) {
+              history.push(Paths.AUTH_LOGIN);
+              localStorage.clear();
+            } else {
+              setErrorModal(true);
+            }
           }
-        }
-      }, [error])
+      }, [error,refetchData]);
+
+     
     
  
     return (
@@ -81,7 +84,10 @@ export const FeedBackContent = () => {
                 <p className='title_modal'>Что-то пошло не так</p>
                 <p className='text_modal'>Произошла ошибка, попробуйте ещё раз.</p>
 
-                <Button type='primary' htmlType='button' onClick={()=> history.push(Paths.MAIN)}  style={{ width: '180px', marginTop:'24px' }}>
+                <Button type='primary' htmlType='button' onClick={()=> {
+                     history.push(Paths.MAIN)
+                    setErrorModal(!errorModal)
+                    }}  style={{ width: '180px', marginTop:'24px' }}>
                     Назад
                 </Button>
             </Modal>}

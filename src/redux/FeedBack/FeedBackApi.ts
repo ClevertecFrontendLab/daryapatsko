@@ -20,7 +20,7 @@ export const feedBackApi = createApi({
             query: () => 'feedback',
         }),
         postReview: builder.mutation({
-            query: (body: {rating:number, message: string}) =>({
+            query: (body: {rating: number, message: string}) =>({
                 url:'feedback',
                 method: 'POST',
                 body, 

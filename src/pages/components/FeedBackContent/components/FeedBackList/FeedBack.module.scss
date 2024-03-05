@@ -1,0 +1,10 @@
+.feedBack_list{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-height: 700px;
+    max-width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}

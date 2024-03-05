@@ -4,6 +4,8 @@ import { createReduxHistoryContext } from 'redux-first-history';
 import { authApi } from './commonApi';
 import userReducer from './userSlice';
 import loadingReducer from './LoadingSlice';
+import { feedBackApi } from './FeedBack/FeedBackApi';
+import feedbackReducer from './FeedBack/FeedBackSlice';
 
 
 const {
@@ -18,8 +20,10 @@ export const store = configureStore({
       [authApi.reducerPath]: authApi.reducer,
       user: userReducer,
       loading: loadingReducer,
+      [feedBackApi.reducerPath]: feedBackApi.reducer,
+      feedback: feedbackReducer,
     }),
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(routerMiddleware, authApi.middleware),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(routerMiddleware, authApi.middleware, feedBackApi.middleware),
   });
 
 export const history = createReduxHistory(store);

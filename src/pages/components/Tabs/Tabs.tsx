@@ -12,16 +12,15 @@ const items = [
 ]
 
 export const TabsItems = () => {
-  const navigate = useNavigate()
   const location = useLocation();
   const handleTabChange = (key: string) => {
     if (key === 'item-2') {
-      history.push(`${Paths.AUTH_lOGIN}/${Paths.AUTH_REGISTRATION}`)
+      history.push(`${Paths.AUTH_LOGIN}/${Paths.AUTH_REGISTRATION}`)
     } else {
-      history.push(Paths.AUTH_lOGIN)
+      history.push(Paths.AUTH_LOGIN)
     }
   };
-  const activeTab = location.pathname === `${Paths.AUTH_lOGIN}/${Paths.AUTH_REGISTRATION}` ? 'item-2' : 'item-1';
+  const activeTab = location.pathname === `${Paths.AUTH_LOGIN}/${Paths.AUTH_REGISTRATION}` ? 'item-2' : 'item-1';
   return (
     <Tabs items={items} activeKey={activeTab} onChange={handleTabChange}> 
     </Tabs>

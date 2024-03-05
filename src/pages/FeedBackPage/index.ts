@@ -1,0 +1,1 @@
+export { FeedBackPage } from './FeedBackPage';

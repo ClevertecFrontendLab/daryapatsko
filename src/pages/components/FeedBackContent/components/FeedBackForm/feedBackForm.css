@@ -1,0 +1,7 @@
+.ant-modal-footer{
+    border-top: 1px solid #f0f0f0;
+    padding: 10px 24px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}

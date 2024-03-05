@@ -14,7 +14,7 @@ export const ErrorUser = () => {
             closable={false}
             okText={<span data-test-id='registration-back-button'>Назад к регистрации</span>}
             cancelText={false}
-            onOk={() => history.push(`${Paths.AUTH_lOGIN}/${Paths.AUTH_REGISTRATION}`)}
+            onOk={() => history.push(`${Paths.AUTH_LOGIN}/${Paths.AUTH_REGISTRATION}`)}
             width={modalWidth}
             centered={true}
         >

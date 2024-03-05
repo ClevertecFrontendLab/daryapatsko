@@ -1,0 +1,20 @@
+@import './style/variables.scss';
+
+a {
+    border: none;
+    text-decoration: none;
+}
+a:hover {
+    color: #535bf2;
+}
+button{
+    cursor: pointer;
+    border: none;
+}
+
+body {
+    font-family: 'Inter';
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+}

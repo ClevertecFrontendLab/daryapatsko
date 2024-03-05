@@ -9,7 +9,7 @@ export const ErrorChangePassword = () => {
     const windowSize = useWindowSize();
     const modalWidth = windowSize.width < 450 ? '328px' : '539px';
     const onOk = () => {
-        history.push(`${Paths.AUTH_lOGIN}/${Paths.AUTH_CHANGE_PASSWORD}`, {
+        history.push(`${Paths.AUTH_LOGIN}/${Paths.AUTH_CHANGE_PASSWORD}`, {
             state: { from: location.pathname },
         });
     };

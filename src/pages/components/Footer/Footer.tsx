@@ -1,14 +1,16 @@
-import React from 'react';
 import android from './../../../assets/android.svg';
 import apple from './../../../assets/apple.svg';
 import './footer.css';
+import { Button } from 'antd';
+import { history } from '@redux/configure-store';
+import { Paths } from './../../../routes/path';
 
 const Footer = ({collapsed} : {collapsed:boolean}) => {
     return (
         <div className={`footer-content ${collapsed ? "close" : 'open'}`}>
-            <a href='!#' className='footer-link footer-content-link'>
+            <Button type='link' onClick={()=>history.push(Paths.FEEDBACK)} data-test-id='see-reviews'>
                 Смотреть отзывы
-            </a>
+            </Button>
             <div className='footer-content-box'>
                 <div className='footer-content-description'>
                     <a href='!#' className='footer-link footer-description-link'>

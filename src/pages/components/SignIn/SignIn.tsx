@@ -5,7 +5,7 @@ import { useCheckEmailMutation } from '@redux/commonApi';
 import { Paths } from './../../../routes/path';
 import { useEffect, useState } from 'react';
 import { GooglePlusOutlined } from '@ant-design/icons';
-import { setUser } from '@redux/userSlice';
+import { setRemember, setUser } from '@redux/userSlice';
 import { useDispatch } from 'react-redux';
 import { history } from '@redux/configure-store';
 import { setLoading } from '@redux/LoadingSlice';
@@ -16,6 +16,8 @@ import {
     VALID_RULES_EMAIL,
     VALID_RULES_PASSWORD,
 } from '@constants/constAuth';
+import { baseURL } from './../../../constants/constAuth';
+import { useAppSelector } from '@hooks/typed-react-redux-hooks';
 
 export const SignIn: React.FC = () => {
     const location = useLocation();
@@ -24,12 +26,16 @@ export const SignIn: React.FC = () => {
     const [isEmailValid, setIsEmailValid] = useState(false);
     const [auth] = useAuthLoginMutation();
     const [checkEmail] = useCheckEmailMutation();
-    const [refreshPage, setRefreshPage] = useState(false);
+    const { remember } = useAppSelector((state) => state.user);
 
     const emailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const email = e.target.value;
         setEmail(email);
         setIsEmailValid(!validateEmail(email));
+    };
+
+    const authGoogle = () => {
+        window.location.href = `${baseURL}/auth/google`;
     };
 
     const onFinish = async (values: any) => {
@@ -38,10 +44,10 @@ export const SignIn: React.FC = () => {
         auth({ email: values.email, password: values.password })
             .unwrap()
             .then((res) => {
-                values.remember
+                remember
                     ? localStorage.setItem('token', res.accessToken)
                     : sessionStorage.setItem('token', res.accessToken);
-                history.push(`${Paths.MAIN}`);
+                history.push(Paths.MAIN);
             })
             .catch((err) => {
                 if (err) {
@@ -62,7 +68,7 @@ export const SignIn: React.FC = () => {
         dispatch(setUser({ email }));
         checkEmail({ email })
             .unwrap()
-            .then(() => history.push(`${Paths.AUTH_lOGIN}/${Paths.AUTH_CONFIRM}`))
+            .then(() => history.push(`${Paths.AUTH_LOGIN}/${Paths.AUTH_CONFIRM}`))
             .catch((err) => {
                 if (err.status === STATUS_404 && err.data.message === 'Email не найден') {
                     history.push(`${Paths.RESULT}/${Paths.ERROR_CHECK}`);
@@ -76,13 +82,10 @@ export const SignIn: React.FC = () => {
     };
 
     useEffect(() => {
-        if (refreshPage) {
-            window.location.reload();
-        }
         if (location.state?.state?.from === `${Paths.RESULT}/${Paths.ERROR_CHECK_EMAIL}`) {
             checkEmail({ email })
                 .unwrap()
-                .then(() => history.push(`${Paths.AUTH_lOGIN}/${Paths.AUTH_CONFIRM}`))
+                .then(() => history.push(`${Paths.AUTH_LOGIN}/${Paths.AUTH_CONFIRM}`))
                 .catch((err) => {
                     if (err.status === STATUS_404 && err.data.message === 'Email не найден') {
                         history.push(`${Paths.RESULT}/${Paths.ERROR_CHECK}`);
@@ -91,13 +94,13 @@ export const SignIn: React.FC = () => {
                     }
                 });
         }
-    }, [refreshPage, location]);
+    }, [location]);
 
     return (
         <div className='form_signIn'>
             <Form
                 name='basic'
-                initialValues={{ remember: true }}
+                initialValues={{ remember: false }}
                 onFinish={onFinish}
                 autoComplete='off'
                 className=''
@@ -110,8 +113,16 @@ export const SignIn: React.FC = () => {
                     <Input.Password placeholder='Пароль' data-test-id='login-password' />
                 </Form.Item>
                 <Form.Item className='form_option'>
-                    <Form.Item name='remember' valuePropName='checked' noStyle>
-                        <Checkbox data-test-id='login-remember'>Запомнить меня</Checkbox>
+                    <Form.Item name='remember' noStyle>
+                        <Checkbox
+                            data-test-id='login-remember'
+                            checked={remember}
+                            onChange={() => {
+                                dispatch(setRemember());
+                            }}
+                        >
+                            Запомнить меня
+                        </Checkbox>
                     </Form.Item>
 
                     <button
@@ -133,7 +144,12 @@ export const SignIn: React.FC = () => {
                 >
                     Войти
                 </Button>
-                <Button type='primary' htmlType='submit' className='google-form-button'>
+                <Button
+                    type='primary'
+                    htmlType='button'
+                    onClick={authGoogle}
+                    className='google-form-button'
+                >
                     <GooglePlusOutlined style={{ marginTop: '4px' }} />
                     <span>Войти через Google</span>
                 </Button>

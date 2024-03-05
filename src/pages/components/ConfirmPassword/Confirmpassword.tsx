@@ -58,7 +58,7 @@ export const ConfirmPassword = () => {
                                 .unwrap()
                                 .then((res) => {
                                     history.push(
-                                        `${Paths.AUTH_lOGIN}/${Paths.AUTH_CHANGE_PASSWORD}`,
+                                        `${Paths.AUTH_LOGIN}/${Paths.AUTH_CHANGE_PASSWORD}`,
                                     );
                                 })
                                 .catch((err) => {

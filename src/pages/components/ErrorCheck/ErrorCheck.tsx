@@ -20,7 +20,7 @@ export const ErrorCheck = () => {
             }
             cancelText={false}
             okButtonProps={{ className: 'customButton' }}
-            onOk={() => history.push(Paths.AUTH_lOGIN)}
+            onOk={() => history.push(Paths.AUTH_LOGIN)}
             width={modalWidth}
             centered={true}
             style={{ padding: '64px 32px' }}

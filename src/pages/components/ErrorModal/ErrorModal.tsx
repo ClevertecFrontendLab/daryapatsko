@@ -14,7 +14,7 @@ const ErrorModal = () => {
             closable={false}
             okText={<span data-test-id='login-retry-button'>Повторить</span>}
             cancelText={false}
-            onOk={() => history.push(Paths.AUTH_lOGIN)}
+            onOk={() => history.push(Paths.AUTH_LOGIN)}
             width={modalWidth}
             centered={true}
         >

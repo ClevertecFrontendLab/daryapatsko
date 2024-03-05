@@ -14,7 +14,7 @@ export const SuccessChangePassword = () => {
             closable={false}
             okText={<span data-test-id='change-entry-button'>Вход</span>}
             cancelText={false}
-            onOk={() => history.push(Paths.AUTH_lOGIN)}
+            onOk={() => history.push(Paths.AUTH_LOGIN)}
             width={modalWidth}
             centered={true}
         >

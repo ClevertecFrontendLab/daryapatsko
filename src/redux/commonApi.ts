@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-const baseURL = 'https://marathon-api.clevertec.ru';
+import { baseURL } from './../constants/constAuth';
 
 export const authApi = createApi({
     reducerPath: 'authApi',
@@ -52,9 +51,14 @@ export const authApi = createApi({
                 body,
                 credentials: 'include',
             })
+        }),
+        authGoogle: builder.query({
+            query: ()=> ({
+                url: 'auth/google',
+            })
         })
 
     }),
 });
 
-export const { useAuthLoginMutation, useAuthRegistationMutation, useCheckEmailMutation, useChangePasswordMutation, useConfirmEmailMutation } = authApi;
+export const { useAuthLoginMutation, useAuthRegistationMutation, useCheckEmailMutation, useChangePasswordMutation, useConfirmEmailMutation, useAuthGoogleQuery } = authApi;

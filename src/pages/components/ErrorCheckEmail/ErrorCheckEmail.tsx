@@ -6,7 +6,7 @@ import { Paths } from './../../../routes/path';
 
 export const ErrorCheckEmail = () => {
     const onOk = () => {
-        history.push(`${Paths.AUTH_lOGIN}`, { state: { from: location.pathname } });
+        history.push(`${Paths.AUTH_LOGIN}`, { state: { from: location.pathname } });
     };
     return (
         <Modal

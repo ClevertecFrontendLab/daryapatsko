@@ -1,0 +1,74 @@
+@import './../../../../../style/variables.scss';
+
+.review_container{
+    padding: 16px;
+    background-color: $color-background;
+    max-width: 100%;
+    border-radius: 2px;
+    min-height: 128px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+}
+.review_box{
+    display: flex;
+    gap: 12px;
+}
+.review_profileInfo{
+    max-width: 174px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.avatar_box{
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color:  transparent;
+    @include flex-center;
+}
+.avatar_box img{
+    border-radius: 50%;
+    max-width: 42px;
+    max-height: 42px;
+}
+.review_profileName{
+    padding: 0 30px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    color: #262626;
+}
+.review_descriptionInfo{
+    display: flex;
+    align-items: center;
+}
+.review_date{
+    padding-left: 16px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 130%;
+    color: $color-disable;
+}
+.review_text{
+    padding-top: 12px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 130%;
+    color: $color-text-light;
+    word-break: break-word;
+}
+
+@media screen and (max-width:380px){
+    .review_container{
+        min-height: auto;
+    }
+    .review_box{
+        flex-direction: column;
+    }
+    .review_profileInfo{
+        flex-direction: row;
+    }
+
+}

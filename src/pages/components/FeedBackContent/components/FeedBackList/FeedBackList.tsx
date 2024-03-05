@@ -1,15 +1,13 @@
-import React, { FC } from 'react'
-import { FeedBackT } from './../../../../../types/types'
-import style from './FeedBack.module.css';
+import { FC } from 'react'
+import { FeedBackListProps } from './../../../../../types/types'
+import style from './FeedBack.module.scss';
 import { FeedBackItem } from '../FeedBackItem';
+import { sortByDate } from '@utils/utils';
 
-interface FeedBackListProps {
-    list: FeedBackT[],
-    all: boolean,
-  }
+
 
 export const FeedBackList:FC<FeedBackListProps> = ( {list, all} ) => {
-  const sortedList = [...list].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+ const sortedList = sortByDate(list)
   const lastFeebBack = sortedList.slice(0, 4);
   return (
     <div className={style.feedBackList_container}>

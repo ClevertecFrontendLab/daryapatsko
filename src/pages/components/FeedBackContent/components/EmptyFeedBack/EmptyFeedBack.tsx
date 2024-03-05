@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import s from './EmptyFeedBack.module.css';
+import s from './EmptyFeedBack.module.scss';
 import { Button } from 'antd';
 import { FeedBackForm } from '../FeedBackForm';
 

@@ -8,7 +8,7 @@ export const Error = () => {
     const windowSize = useWindowSize();
     const modalWidth = windowSize.width < 450 ? '328px' : '539px';
     const onOk = () => {
-        history.push(`${Paths.AUTH_lOGIN}/${Paths.AUTH_REGISTRATION}`, {
+        history.push(`${Paths.AUTH_LOGIN}/${Paths.AUTH_REGISTRATION}`, {
             state: { from: location.pathname },
         });
     };

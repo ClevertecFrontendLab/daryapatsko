@@ -1,12 +1,8 @@
-import React, { FC } from 'react';
-import { FeedBackT } from './../../../../../types/types';
-import style from './FeedBackItem.module.css';
+import { FC } from 'react';
+import { FeedBackItemProps } from './../../../../../types/types';
+import style from './FeedBackItem.module.scss';
 import { Rate } from 'antd';
 import { UserOutlined } from '@ant-design/icons/lib/icons';
-
-interface FeedBackItemProps {
-    item: FeedBackT;
-}
 
 export const FeedBackItem: FC<FeedBackItemProps> = ({ item }: FeedBackItemProps) => {
     const { fullName, imageSrc, message, rating, createdAt } = item;
@@ -25,7 +21,7 @@ export const FeedBackItem: FC<FeedBackItemProps> = ({ item }: FeedBackItemProps)
                         {imageSrc ? <img src={imageSrc} alt='avatar' /> : <UserOutlined />}
                     </div>
                     <p className={style.review_profileName}>
-                        {fullName ? `${fullName}` : 'Пользователь'}{' '}
+                        {fullName || 'Пользователь'}{' '}
                     </p>
                 </div>
                 <div className={style.review_description}>

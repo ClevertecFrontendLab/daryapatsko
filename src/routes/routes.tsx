@@ -18,8 +18,8 @@ import { ErrorCheckEmail } from '@pages/components/ErrorCheckEmail';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/configure-store';
 import Loader from '@pages/components/Loader/Loader';
-import FeedBackPage from '@pages/FeedBackPage/FeedBackPage';
 import PrivateRoute from './privateRoute';
+import { FeedBackPage } from '@pages/FeedBackPage';
 
 const RoutesComponent = () => {
     const isLoading = useSelector((state: RootState) => state.loading.isLoading);

@@ -1,5 +1,5 @@
 import { Header } from 'antd/lib/layout/layout'
-import BreadcrumbLink from '../Breadcrumb/Breadcrumb'
+import { BreadcrumbLink } from '../Breadcrumb'
 
 const HeaderFeedBack = () => {
   return (

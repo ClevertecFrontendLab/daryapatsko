@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import s from './feedBackStyle.module.css';
+import s from './feedBackStyle.module.scss';
 import { EmptyFeedBack } from './components/EmptyFeedBack';
 import { useGetFeedBackQuery } from '@redux/FeedBack/FeedBackApi';
 import { FeedBackList } from './components/FeedBackList';
@@ -9,42 +9,36 @@ import { history } from '@redux/configure-store';
 import { Paths } from './../../../routes/path';
 import { FeedBackForm } from './components/FeedBackForm';
 import errorIcon from './../../../assets/registration/errorCheckEmail.svg';
-import { useAppSelector } from '@hooks/typed-react-redux-hooks';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setRefetch } from '@redux/FeedBack/FeedBackSlice';
+import { feedbackSelector } from './selector';
 
 export const FeedBackContent = () => {
     const { data, error, refetch } = useGetFeedBackQuery();
     const [allReviews, setAllReviews] = useState(false);
     const [openModal, setOpenModal] = useState(false);
     const [errorModal, setErrorModal] = useState(false);
-    const { refetchData } = useAppSelector((state) => state.feedback);
-    const dispatch = useDispatch()
-   
+    const { refetchData } = useSelector(feedbackSelector);
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        
         if (refetchData) {
-          refetch();
-          dispatch(setRefetch())
+            refetch();
+            dispatch(setRefetch());
         }
         if (error) {
             if ('status' in error && error.status === STATUS_403) {
-              history.push(Paths.AUTH_LOGIN);
-              localStorage.clear();
+                history.push(Paths.AUTH_LOGIN);
+                localStorage.clear();
             } else {
-              setErrorModal(true);
+                setErrorModal(true);
             }
-          }
-      }, [error,refetchData]);
+        }
+    }, [error, refetchData]);
 
-     
-    
- 
     return (
         <div className={s.feedBackContainer}>
-            {data?.length === 0 ? (
-                <EmptyFeedBack />
-            ) : (
+            {data?.length ? (
                 <>
                     <div className={s.feedBackList}>
                         {data && <FeedBackList list={data} all={allReviews} />}
@@ -59,7 +53,6 @@ export const FeedBackContent = () => {
                                 borderRadius: '2px',
                                 border: '1px solid #2f54eb',
                             }}
-                           
                             onClick={() => {
                                 setOpenModal(!openModal);
                             }}
@@ -77,20 +70,36 @@ export const FeedBackContent = () => {
                         </Button>
                     </div>
                 </>
+            ) : (
+                <EmptyFeedBack />
             )}
             {openModal && <FeedBackForm openModal={openModal} />}
-            {errorModal && <Modal open={true} closable={false} cancelText={false} footer={false} centered  maskStyle={{ background: '#799CD41A', backdropFilter: 'blur(5px)' }}>
-                <img src={errorIcon} alt='error' />
-                <p className='title_modal'>Что-то пошло не так</p>
-                <p className='text_modal'>Произошла ошибка, попробуйте ещё раз.</p>
+            {errorModal && (
+                <Modal
+                    open={true}
+                    closable={false}
+                    cancelText={false}
+                    footer={false}
+                    centered
+                    maskStyle={{ background: '#799CD41A', backdropFilter: 'blur(5px)' }}
+                >
+                    <img src={errorIcon} alt='error' />
+                    <p className='title_modal'>Что-то пошло не так</p>
+                    <p className='text_modal'>Произошла ошибка, попробуйте ещё раз.</p>
 
-                <Button type='primary' htmlType='button' onClick={()=> {
-                     history.push(Paths.MAIN)
-                    setErrorModal(!errorModal)
-                    }}  style={{ width: '180px', marginTop:'24px' }}>
-                    Назад
-                </Button>
-            </Modal>}
+                    <Button
+                        type='primary'
+                        htmlType='button'
+                        onClick={() => {
+                            history.push(Paths.MAIN);
+                            setErrorModal(!errorModal);
+                        }}
+                        style={{ width: '180px', marginTop: '24px' }}
+                    >
+                        Назад
+                    </Button>
+                </Modal>
+            )}
         </div>
     );
 };

@@ -6,7 +6,7 @@ import { HistoryRouter } from 'redux-first-history/rr6';
 import { store, history } from '@redux/configure-store';
 
 import 'normalize.css';
-import './index.css';
+import './index.scss';
 
 import  RoutesComponent  from './routes/routes';
 

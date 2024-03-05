@@ -1,6 +1,8 @@
+@import './../../../../../style/variables.scss';
+
 .review_container{
     padding: 16px;
-    background-color: #fff;
+    background-color: $color-background;
     max-width: 100%;
     border-radius: 2px;
     min-height: 128px;
@@ -23,9 +25,7 @@
     height: 42px;
     border-radius: 50%;
     background-color:  transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
 }
 .avatar_box img{
     border-radius: 50%;
@@ -34,7 +34,7 @@
 }
 .review_profileName{
     padding: 0 30px;
-        text-align: center;
+    text-align: center;
     font-weight: 400;
     font-size: 16px;
     line-height: 130%;
@@ -49,14 +49,14 @@
     font-weight: 400;
     font-size: 12px;
     line-height: 130%;
-    color:  #bfbfbf;
+    color: $color-disable;
 }
 .review_text{
     padding-top: 12px;
     font-weight: 400;
     font-size: 14px;
     line-height: 130%;
-    color: #8c8c8c;
+    color: $color-text-light;
     word-break: break-word;
 }
 

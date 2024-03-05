@@ -1,4 +1,3 @@
-import React from 'react';
 import android from './../../../assets/android.svg';
 import apple from './../../../assets/apple.svg';
 import './footer.css';

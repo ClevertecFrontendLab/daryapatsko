@@ -1,9 +1,9 @@
+@import './../../../../../style/variables.scss';
+
 .emptyFeed_container{
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex-center;
 }
 .emptyFeed_content{
     width: 100%;
@@ -15,18 +15,18 @@
 .emptyFeed_box{
     width: 100%;
     text-align: center;
-    background-color: #fff;
+    background-color: $neutral-gray-1;
     padding: 56px 0;
 }
 .emptyFeed_title{
     padding-bottom: 36px;
-    color: #061178;
+    color: $color-blue-9;
     font-size: 24px;
     font-weight: 500;
 }
 .emptyFeed_description{
     font-size: 14px;
     font-weight: 400;
-    color: #8C8C8C;
+    color: $color-text-light;
     line-height: 18.2px;
 }
